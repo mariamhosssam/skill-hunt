@@ -1,6 +1,5 @@
 const Login = () => {
     return (
-        <>
           <div>
   &lt;&gt;
   <div id="overlayer" />
@@ -104,7 +103,7 @@ const Login = () => {
               <div className="row form-group">
                 <div className="col-md-12 mb-3 mb-md-0">
                   <label className="text-black" htmlFor="fname">Email</label>
-                  <input type="text" id="fname" className="form-control" placeholder="Email address" />
+                  <input type="text" id="fname1" className="form-control" placeholder="Email address" />
                 </div>
               </div>
               <div className="row form-group mb-4">
@@ -181,7 +180,6 @@ const Login = () => {
     </footer>
   </div>
 </div>
-</>
 
         );
     };

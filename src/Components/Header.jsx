@@ -1,4 +1,16 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Header = (props) => {
+  
+  const [signedIn, setSignedIN] = useState(false)
+
+  // const handleSignIn = () => {
+  //   setSignedIN(true)
+  // }
+  const handleSignOut = () => {
+    setSignedIN(false)
+  }
   return (
     <header className="site-navbar mt-3">
       <div className="container-fluid">
@@ -17,7 +29,7 @@ const Header = (props) => {
               <li>
                 <a href="about.html">About</a>
               </li>
-              {props.signedIn && (
+              {signedIn && (
                 <>
                   <li>
                     <a href="dashboard.html" className="nav-link">
@@ -43,48 +55,36 @@ const Header = (props) => {
           </nav>
           <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div className="ml-auto">
-              {!props.signedIn ? (
+              {!signedIn ? (
                 <>
                   <a
                     href="company-signUp.html"
                     className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"
                   >
-                    <span />
                     Company ?
                   </a>
                   <a
                     href="user-signUp.html"
                     className="btn btn-primary border-width-2 d-none d-lg-inline-block"
                   >
-                    <span />
                     Sign Up
                   </a>
-                  <a
-                    href="login.html"
+                  <Link
+                    to="/login"
+                    // onClick={handleSignIn}
                     className="btn btn-primary border-width-2 d-none d-lg-inline-block"
                   >
-                    <span />
                     Log In
-                  </a>
+                  </Link>
                 </>
               ) : (
-                <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
-                  <div className="ml-auto">
-                    <a
-                      href="index.html"
+                  <Link
+                      to="/"
+                      // onClick={handleSignOut}
                       className="btn btn-primary border-width-2 d-none d-lg-inline-block"
                     >
-                      <span />
                       Log Out
-                    </a>
-                  </div>
-                  <a
-                    href="#"
-                    className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"
-                  >
-                    <span className="icon-menu h3 m-0 p-0 mt-2" />
-                  </a>
-                </div>
+                    </Link>
               )}
             </div>
             <a
