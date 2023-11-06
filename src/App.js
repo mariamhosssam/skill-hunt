@@ -1,6 +1,5 @@
 import './App.css';
 import About from './Pages/About';
-import Explore from './Pages/Explore';
 import Index from './Pages/Index';
 
 function App() {
