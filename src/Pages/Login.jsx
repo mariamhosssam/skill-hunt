@@ -1,8 +1,31 @@
+import { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  console.log("login");
+
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    console.log(email, password)
+    if(email && password) {
+      // send to api
+      // received true value
+      localStorage.setItem('signed', true)
+      navigate('/')
+    }
+    
+  }
+  const handleEmail = (event) => {
+    setEmail(event.target.value)
+  }
+  const handlePassword = (event) => {
+    setPassword(event.target.value)
+  }
+
   return (
     // // <div>
     //   {/* <div id="overlayer" /> */}
@@ -40,6 +63,7 @@ const Login = () => {
                         Email
                       </label>
                       <input
+                        onBlur={handleEmail}
                         type="text"
                         id="fname1"
                         className="form-control"
@@ -53,6 +77,7 @@ const Login = () => {
                         Password
                       </label>
                       <input
+                      onChange={handlePassword}
                         type="password"
                         id="fname"
                         className="form-control"
@@ -63,6 +88,7 @@ const Login = () => {
                   <div className="row form-group">
                     <div className="col-md-12">
                       <input
+                        onClick={handleSignIn}
                         type="submit"
                         defaultValue="Log In"
                         className="btn px-4 btn-primary text-white"

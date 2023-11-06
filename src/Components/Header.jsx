@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Header = (props) => {
   
-  const [signedIn, setSignedIN] = useState(false)
+  const [signedIn, setSignedIN] = useState()
 
-  // const handleSignIn = () => {
-  //   setSignedIN(true)
-  // }
+  useEffect(() => {
+    if(localStorage.getItem('signed')) {
+      setSignedIN(true)
+    }
+  })
+
   const handleSignOut = () => {
+    localStorage.removeItem('signed')
     setSignedIN(false)
   }
   return (
@@ -90,13 +94,13 @@ const Header = (props) => {
                   </Link>
                 </>
               ) : (
-                  <Link
-                      to="/"
-                      // onClick={handleSignOut}
+                  <button
+                      // to="/"
+                      onClick={handleSignOut}
                       className="btn btn-primary border-width-2 d-none d-lg-inline-block"
                     >
                       Log Out
-                    </Link>
+                    </button>
               )}
             </div>
             <a
