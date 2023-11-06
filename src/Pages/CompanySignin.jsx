@@ -1,6 +1,6 @@
-const UserSignin = () => {
+const CompanySignin = () => {
     return (
-        <div>
+      <div>
   &lt;&gt;
   <div id="overlayer" />
   <div className="loader">
@@ -27,19 +27,21 @@ const UserSignin = () => {
               <li><a href="index.html" className="nav-link">Home</a></li>
               <li><a href="about.html">About</a></li>
               {/* <li class="has-children">
-          <a href="job-listings.html">Job Listings</a>
-          <ul class="dropdown">
-            <li><a href="job-single.html">Job Single</a></li>
-            <li><a href="post-job.html">Post a Job</a></li>
-          </ul>
-        </li> */}
+                <a href="job-listings.html">Job Listings</a>
+                <ul class="dropdown">
+                  <li><a href="job-single.html">Job Single</a></li>
+                  <li><a href="post-job.html">Post a Job</a></li>
+                </ul>
+              </li> */}
+              <li className="d-lg-none"><a href="company-signUp.html"><span className="mr-2" /> Company ?</a></li>
+              <li className="d-lg-none"><a href="user-signUp.html">Sign Up</a></li>
               <li className="d-lg-none"><a href="login.html">Log In</a></li>
             </ul>
           </nav>
           <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div className="ml-auto">
               {/* <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span ></span>Company ?</a>
-        <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span ></span>Sign Up</a> */}
+              <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span ></span>Sign Up</a> */}
               {/* <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span ></span>Log In</a> */}
               <div className="d-flex align-items-center">
                 <span>Already on SkillHunt ? </span>
@@ -56,7 +58,7 @@ const UserSignin = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-7">
-            <h1 className="text-white font-weight-bold">Sign Up and Start Applying For Jobs</h1>
+            <h1 className="text-white font-weight-bold">Create a Company Account to Start Hiring Now</h1>
             <div className="custom-breadcrumbs">
               <a href="#">Home</a> <span className="mx-2 slash">/</span>
               <span className="text-white"><strong>Sign Up</strong></span>
@@ -72,45 +74,57 @@ const UserSignin = () => {
             <h2 className="mb-4">Sign Up To SkillHunt</h2>
             <form action="#" className="p-4 border rounded">
               {/* 
-        <div class="row form-group">
-          <div class="col-md-12 mb-3 mb-md-0">
-            <label class="text-black" for="fname">Business Email</label>
-            <input type="text" id="fname" class="form-control" placeholder="Email address">
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-md-12 mb-3 mb-md-0">
-            <label class="text-black" for="fname">Password</label>
-            <input type="password" id="fname" class="form-control" placeholder="Password">
-          </div>
-        </div>
-        <div class="row form-group mb-4">
-          <div class="col-md-12 mb-3 mb-md-0">
-            <label class="text-black" for="fname">Re-Type Password</label>
-            <input type="password" id="fname" class="form-control" placeholder="Re-type Password">
-          </div>
-        </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Business Email</label>
+                  <input type="text" id="fname" class="form-control" placeholder="Email address">
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Password</label>
+                  <input type="password" id="fname" class="form-control" placeholder="Password">
+                </div>
+              </div>
+              <div class="row form-group mb-4">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Re-Type Password</label>
+                  <input type="password" id="fname" class="form-control" placeholder="Re-type Password">
+                </div>
+              </div>
 
-        <div class="row form-group">
-          <div class="col-md-12">
-            <input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white">
-          </div>
-        </div> */}
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white">
+                </div>
+              </div> */}
               <div className="mb-3 mt-3">
-                <label htmlFor="email">Email:</label>
-                <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" />
+                <label htmlFor="business email">Business Email:</label>
+                <input type="business email" className="form-control" id="business email" placeholder="Enter your business email" name="business email" />
               </div>
               <div className="mb-3 mt-3">
-                <label htmlFor="first name">first name:</label>
+                <label htmlFor="first name">First name:</label>
                 <input type="first name" className="form-control" id="first name" placeholder="Enter your first name" name="first name" />
               </div>
               <div className="mb-3 mt-3">
-                <label htmlFor="Last name">last name:</label>
+                <label htmlFor="last name">Last name:</label>
                 <input type="last name" className="form-control" id="last name" placeholder="Enter your last name" name="last name" />
               </div>
               <div className="mb-3 mt-3">
-                <label htmlFor="what job title are you looking for?">what job title are you looking for?</label>
-                <input type="what job title are you looking for?" className="form-control" id="what job title are you looking for?" placeholder="Enter your job title" name="what job title are you looking for?" />
+                <label htmlFor="mobile number">Mobile number:</label>
+                <input type="mobile number" className="form-control" id="mobile number" placeholder="Enter your mobile number" name="mobile number" />
+              </div>
+              <div className="mb-3 mt-3">
+                <label htmlFor="company name">Company name:</label>
+                <input type="company name" className="form-control" id="company name" placeholder="Enter your company name" name="company name" />
+              </div>
+              <div className="mb-3 mt-3">
+                <label htmlFor="Foundation date">Foundation date:</label>
+                <input type="Foundation date" className="form-control" id="Foundation date" placeholder="Enter the Foundation date" name="Foundation date" />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="Industry">Industry:</label>
+                <input type="Industry" className="form-control" id="Industry" placeholder="Enter the Industry" name="Industry" />
               </div>
               <div className="mb-3">
                 <label htmlFor="pwd">Password:</label>
@@ -121,35 +135,37 @@ const UserSignin = () => {
                   <input className="form-check-input" type="checkbox" name="remember" /> Remember me
                 </label>
               </div>
-              <a href="Explore.html">submit</a>
-              {/* <div class="col-lg-6">
-      <h2 class="mb-4">Log In To JobBoard</h2>
-      <form action="#" class="p-4 border rounded">
-
-        <div class="row form-group">
-          <div class="col-md-12 mb-3 mb-md-0">
-            <label class="text-black" for="fname">Email</label>
-            <input type="text" id="fname" class="form-control" placeholder="Email address">
+              <a href="login.html">Submit</a>
+            </form>
           </div>
-        </div>
-        <div class="row form-group mb-4">
-          <div class="col-md-12 mb-3 mb-md-0">
-            <label class="text-black" for="fname">Password</label>
-            <input type="password" id="fname" class="form-control" placeholder="Password">
-          </div>
-        </div>
+          {/* <div class="col-lg-6">
+            <h2 class="mb-4">Log In To JobBoard</h2>
+            <form action="#" class="p-4 border rounded">
 
-        <div class="row form-group">
-          <div class="col-md-12">
-            <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
-          </div>
-        </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Email</label>
+                  <input type="text" id="fname" class="form-control" placeholder="Email address">
+                </div>
+              </div>
+              <div class="row form-group mb-4">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Password</label>
+                  <input type="password" id="fname" class="form-control" placeholder="Password">
+                </div>
+              </div>
 
-      </form>
-    </div> */}
-            </form></div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
+                </div>
+              </div>
+
+            </form>
+          </div> */}
         </div>
-      </div></section>
+      </div>
+    </section>
     <footer className="site-footer">
       <a href="#top" className="smoothscroll scroll-top">
         <span className="icon-keyboard_arrow_up" />
@@ -195,14 +211,12 @@ const UserSignin = () => {
           </div>
         </div>
         <div className="row text-center">
-          {/* <div class="row text-center">
-    <div class="col-12">
-      <p class="copyright"><small>
-        
-      Copyright &copy; All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-     </small></p>
-    </div>
-  </div> */}
+          {/* <div class="col-12">
+            <p class="copyright"><small>
+              Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
+            Copyright &copy; All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+             Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0</small></p>
+          </div> */}
         </div>
       </div>
     </footer>
@@ -212,4 +226,4 @@ const UserSignin = () => {
         );
     };
     
-    export default UserSignin;
+    export default CompanySignin;
