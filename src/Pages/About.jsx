@@ -1,98 +1,22 @@
 import Footer from "../Components/Footer"
+import Header from "../Components/Header"
+import SiteStates from "../Components/SiteStates"
 
 const About = () => {
     return (
-       <div>
-  <div id="overlayer" />
-  <div className="loader">
-    <div className="spinner-border text-primary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  </div>
   <div className="site-wrap">
-    <div className="site-mobile-menu site-navbar-target">
-      <div className="site-mobile-menu-header">
-        <div className="site-mobile-menu-close mt-3">
-          <span className="icon-close2 js-menu-toggle" />
-        </div>
-      </div>
-      <div className="site-mobile-menu-body" />
-    </div> {/* .site-mobile-menu */}
-    {/* NAVBAR */}
-    <header className="site-navbar mt-3">
-      <div className="container-fluid">
-        <div className="row align-items-center">
-          <div className="site-logo col-6"><a href="index.html">SkillHunt</a></div>
-          <nav className="mx-auto site-navigation">
-            <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" className="nav-link">Home</a></li>
-              <li><a href="about.html" className="active">About</a></li>
-              <li className="d-lg-none"><a href="company-signUp.html"><span className="mr-2" /> Company ?</a></li>
-              <li className="d-lg-none"><a href="user-signUp.html">Sign Up</a></li>
-              <li className="d-lg-none"><a href="login.html">Log In</a></li>
-            </ul>
-          </nav>
-          <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
-            <div className="ml-auto">
-              <a href="company-signUp.html" className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span />Company ?</a>
-              <a href="user-signUp.html" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span />Sign Up</a>
-              <a href="login.html" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span />Log In</a>
-            </div>
-            <a href="#" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2" /></a>
-          </div>
-        </div>
-      </div>
-    </header>
+    <Header></Header>
     {/* HOME */}
     <section className="section-hero overlay inner-page bg-image" style={{backgroundImage: 'url("images/hero_1.jpg")'}} id="home-section">
       <div className="container">
         <div className="row">
           <div className="col-md-7">
             <h1 className="text-white font-weight-bold">About Us</h1>
-            <div className="custom-breadcrumbs">
-              <a href="#">Home</a> <span className="mx-2 slash">/</span>
-              <span className="text-white"><strong>About Us</strong></span>
-            </div>
           </div>
         </div>
       </div>
     </section>
-    <section className="py-5 bg-image overlay-primary fixed overlay" id="next-section" style={{backgroundImage: 'url("images/hero_1.jpg")'}}>
-      <div className="container">
-        <div className="row mb-5 justify-content-center">
-          <div className="col-md-7 text-center">
-            <h2 className="section-title mb-2 text-white">Skillhunt Site Stats</h2>
-            <p className="lead text-white"> Job boards are like windows into the job market, where the statistics tell the story of opportunities, talent, and the ever-evolving landscape of employment.</p>
-          </div>
-        </div>
-        <div className="row pb-0 block__19738 section-counter">
-          <div className="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div className="d-flex align-items-center justify-content-center mb-2">
-              <strong className="number" data-number={1930}>0</strong>
-            </div>
-            <span className="caption">Candidates</span>
-          </div>
-          <div className="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div className="d-flex align-items-center justify-content-center mb-2">
-              <strong className="number" data-number={54}>0</strong>
-            </div>
-            <span className="caption">Jobs Posted</span>
-          </div>
-          <div className="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div className="d-flex align-items-center justify-content-center mb-2">
-              <strong className="number" data-number={120}>0</strong>
-            </div>
-            <span className="caption">Jobs Filled</span>
-          </div>
-          <div className="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div className="d-flex align-items-center justify-content-center mb-2">
-              <strong className="number" data-number={550}>0</strong>
-            </div>
-            <span className="caption">Companies</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <SiteStates></SiteStates>
     <section className="site-section pb-0">
       <div className="container">
         <div className="row align-items-center">
@@ -168,7 +92,6 @@ const About = () => {
         </div></div></section>
     <Footer></Footer>
   </div>
-</div>
 
         )
     }

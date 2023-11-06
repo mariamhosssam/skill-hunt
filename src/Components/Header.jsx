@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = (props) => {
   
@@ -12,22 +12,34 @@ const Header = (props) => {
     setSignedIN(false)
   }
   return (
-    <header className="site-navbar mt-3">
+    <>
+     <div className="site-mobile-menu site-navbar-target">
+          <div className="site-mobile-menu-header">
+            <div className="site-mobile-menu-close mt-3">
+              <span className="icon-close2 js-menu-toggle" />
+            </div>
+          </div>
+          <div className="site-mobile-menu-body" />
+        </div>{" "}
+
+        
+        {/* .site-mobile-menu */}
+        {/* NAVBAR */}
+
+        <header className="site-navbar mt-3">
       <div className="container-fluid">
         <div className="row align-items-center">
           <div className="site-logo col-6">
-            <a href="index.html"> {props.title}</a>
+            <a href="index.html"> {props.title ? props.title : 'SkillHunt'}</a>
           </div>
 
           <nav className="mx-auto site-navigation">
             <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li>
-                <a href="index.html" className="nav-link">
-                  Home
-                </a>
+              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/'>Home</NavLink>
               </li>
               <li>
-                <a href="about.html">About</a>
+                <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/about'>About</NavLink>
               </li>
               {signedIn && (
                 <>
@@ -97,6 +109,8 @@ const Header = (props) => {
         </div>
       </div>
     </header>
+    </>
+   
   );
 };
 
