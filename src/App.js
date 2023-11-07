@@ -11,6 +11,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Root from "./Root";
+import Evaluation from "./Pages/Evaluation";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/Login" element={<Login />}></Route>
       <Route path="/SignUp" element={<UserSignin />}></Route>
       <Route path="/Login-company" element={<CompanySignin />}></Route>
+      <Route path="/yourEvaluation" element={<Evaluation />}></Route>
     </Route>
   )
 );
