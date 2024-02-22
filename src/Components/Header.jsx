@@ -48,10 +48,8 @@ const Header = (props) => {
               {signedIn && (
                 <>
                   <li>
-                    <a href="dashboard.html" className="nav-link">
-                      Dashboard
-                    </a>
-                  </li>
+                <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/Dashboard'>Dashboard</NavLink>
+              </li>
                   <li>
                     <a href="virtualinterview.html" className="nav-link">
                       Practice for interview?
@@ -113,6 +111,17 @@ const Header = (props) => {
         </div>
       </div>
     </header>
+    {props.pageTitle && 
+    <section className="section-hero overlay inner-page bg-image" style={{backgroundImage: 'url("images/hero_1.jpg")'}} id="home-section">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-7">
+            <h1 className="text-white font-weight-bold">{props.pageTitle}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    }
     </>
    
   );

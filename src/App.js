@@ -4,6 +4,7 @@ import Index from "./Pages/Index";
 import UserSignin from "./Pages/UserSignIn";
 import CompanySignin from "./Pages/CompanySignin";
 import Login from "./Pages/Login";
+import Dashboard from "./Pages/Dashboard"
 import {
   Route,
   RouterProvider,
@@ -22,12 +23,14 @@ const router = createBrowserRouter(
       <Route path="/SignUp" element={<UserSignin />}></Route>
       <Route path="/Login-company" element={<CompanySignin />}></Route>
       <Route path="/yourEvaluation" element={<Evaluation />}></Route>
+      <Route path = "/Dashboard" element = {<Dashboard/>} ></Route>
     </Route>
   )
 );
 function App() {
   return (
-    <RouterProvider router={router} />
+   <RouterProvider router={router} />
+   
     // <Switch>
     //   <Route path="/" exact>
     //     <Index></Index>
