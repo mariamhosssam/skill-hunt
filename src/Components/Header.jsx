@@ -71,27 +71,27 @@ const Header = (props) => {
             <div className="ml-auto">
               {!signedIn ? (
                 <>
-                  <a
-                    href="company-signUp.html"
-                    className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"
-                  >
+                  {/* <a href="company-signUp.html" className="btn btn-outline-white border-width-2 d-none d-lg-inline-block">
                     Company ?
-                  </a>
-                  <a
-                    href="user-signUp.html"
-                    className="btn btn-primary border-width-2 d-none d-lg-inline-block"
-                  >
-                    Sign Up
-                  </a>
-                  <Link
-                    to="/login"
-                    // onClick={handleSignIn}
-                    className="btn btn-primary border-width-2 d-none d-lg-inline-block"
-                  >
-                    Log In
+                  </a> */}
+                  <Link to="/CompanySignin"  
+                  className="btn btn-outline-white border-width-2 d-none d-lg-inline-block" >
+                   Company ?
+                  </Link>   
+  
+                  <Link to="/UserSignIn" className="btn btn-primary border-width-2 d-none d-lg-inline-block" >
+                   Sign Up
                   </Link>
+
+
+                  <Link to="/login"  // onClick={handleSignIn} 
+                  className="btn btn-primary border-width-2 d-none d-lg-inline-block" >
+                    Log In
+                  </Link>                   
                 </>
-              ) : (
+              ) 
+              :
+               (
                   <button
                       // to="/"
                       onClick={handleSignOut}
@@ -99,7 +99,7 @@ const Header = (props) => {
                     >
                       Log Out
                     </button>
-              )}
+                )}
             </div>
             <a
               href="#"

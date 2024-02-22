@@ -14,8 +14,10 @@ const Login = () => {
     if(email && password) {
       // send to api
       // received true value
+      // receive user type
       localStorage.setItem('signed', true)
       navigate('/')
+      
     }
     
   }
@@ -95,8 +97,8 @@ const Login = () => {
                       />
                     </div>
                   </div>
-                  <a href="post-job.html">if Company</a>
-                  <a href="Explore.html">if user</a>
+                  {/* <a href="post-job.html">if Company</a>
+                  <a href="Explore.html">if user</a> */}
                 </form>
               </div>
             </div>
