@@ -5,17 +5,9 @@ import SiteStates from "../Components/SiteStates"
 const About = () => {
     return (
   <div className="site-wrap">
-    <Header></Header>
+    <Header pageTitle='About Us'></Header>
     {/* HOME */}
-    <section className="section-hero overlay inner-page bg-image" style={{backgroundImage: 'url("images/hero_1.jpg")'}} id="home-section">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-7">
-            <h1 className="text-white font-weight-bold">About Us</h1>
-          </div>
-        </div>
-      </div>
-    </section>
+   
     <SiteStates></SiteStates>
     <section className="site-section pb-0">
       <div className="container">

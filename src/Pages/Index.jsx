@@ -1,7 +1,7 @@
-import CategorizedJobListing from "../Components/CategorizedJobListing";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import JobSearch from "../Components/JobSearch";
+import JobListing from "../Components/Jobs/JobListing";
 import PartnerCompaniesListing from "../Components/PartnerCompaniesListing";
 import SiteStates from "../Components/SiteStates";
 
@@ -13,7 +13,7 @@ const Index = () => {
         {/* HOME */}
         <JobSearch></JobSearch>
         <SiteStates></SiteStates>
-       <CategorizedJobListing></CategorizedJobListing>
+       <JobListing></JobListing>
         <section
           className="py-5 bg-image overlay-primary fixed overlay"
           style={{ backgroundImage: 'url("images/hero_1.jpg")' }}
