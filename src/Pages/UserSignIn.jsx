@@ -1,7 +1,31 @@
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import axios from "axios";
 
 const UserSignin = () => {
+
+  const submitHandler = ( ) => {
+    console.log('start request')
+    const data = {
+      id: 0,
+      firstName: "Mariam",
+      lastName: "Hossam",
+      position: "intern",
+      email: "user@gmail.com",
+      username: "mariam",
+      password: "1234",
+      hashPassword : "string",
+      isActive: true,
+      createdAte: Date.now()
+    }  
+    axios.post('https://localhost:44322/api/User/user register', JSON.stringify(data))
+    .then(data => {
+      console.log(data)
+      // href="Explore.html"
+    } )
+    .catch(error => console.log(error))
+  }
+ 
   return (
     <div className="site-wrap">
       <Header></Header>
@@ -95,7 +119,7 @@ const UserSignin = () => {
                     Remember me
                   </label>
                 </div>
-                <a href="Explore.html">submit</a>
+                <button onClick={submitHandler}>submit</button>
               </form>
             </div>
           </div>

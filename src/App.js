@@ -4,7 +4,8 @@ import Index from "./Pages/Index";
 import UserSignin from "./Pages/UserSignIn";
 import CompanySignin from "./Pages/CompanySignin";
 import Login from "./Pages/Login";
-import Dashboard from "./Pages/Dashboard"
+import Dashboard from "./Pages/Dashboard";
+import TechQ from "./Pages/TechQ";
 import {
   Route,
   RouterProvider,
@@ -13,6 +14,7 @@ import {
 } from "react-router-dom";
 import Root from "./Root";
 import Evaluation from "./Pages/Evaluation";
+import JobSingle from "./Pages/JobSingle";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,11 +26,14 @@ const router = createBrowserRouter(
       <Route path="/CompanySignin" element={<CompanySignin />}></Route>
       <Route path="/yourEvaluation" element={<Evaluation />}></Route>
       <Route path = "/Dashboard" element = {<Dashboard/>} ></Route>
+      <Route path = "/JobSingle" element = {<JobSingle/>} ></Route>
+      <Route path = "/TechQ" element = {<TechQ/>} ></Route>
     </Route>
   )
 );
 function App() {
   return (
+   
    <RouterProvider router={router} />
    
     // <Switch>
@@ -48,7 +53,7 @@ function App() {
     //     <CompanySignin />
     //   </Route>
     // </Switch>
-  );
+  )
 }
 
 export default App;
