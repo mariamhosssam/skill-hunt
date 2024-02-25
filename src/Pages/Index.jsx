@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import JobSearch from "../Components/JobSearch";
@@ -6,14 +7,20 @@ import PartnerCompaniesListing from "../Components/PartnerCompaniesListing";
 import SiteStates from "../Components/SiteStates";
 
 const Index = () => {
-  return (
+  const [jobs, setJob] = useState([])
+
+  const receiveJobs = (jobs) => {
+    setJob(jobs)
+  }
+  
+  return ( 
 
       <div className="site-wrap">
         <Header title="SkillHunt" signedIn={true}></Header>
         {/* HOME */}
-        <JobSearch></JobSearch>
+        <JobSearch handleJobs={receiveJobs}></JobSearch>
         <SiteStates></SiteStates>
-       <JobListing></JobListing>
+       <JobListing jobs={jobs}></JobListing>
         <section
           className="py-5 bg-image overlay-primary fixed overlay"
           style={{ backgroundImage: 'url("images/hero_1.jpg")' }}

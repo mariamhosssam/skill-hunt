@@ -2,21 +2,36 @@ import { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const navigate = useNavigate();
+  console.log(localStorage.getItem('token'))
 
-  const handleSignIn = () => {
+  const handleSignIn = (event) => {
+    event.preventDefault();
     console.log(email, password)
     if(email && password) {
       // send to api
+      axios.post('https://localhost:44322/api/User/login', {
+        username: email,
+        password: password
+      }).then(data => {
+        console.log(data)
+      localStorage.setItem('token', data.data.token)
+      localStorage.setItem('type', data.data.modelUser.type)
+      if(data.data.modelUser.type === 'USER') {
+        navigate('/')
+      } 
+      })
+      .catch(error => console.log(error))
       // received true value
       // receive user type
-      localStorage.setItem('signed', true)
-      navigate('/')
+      // localStorage.setItem('signed', true)
+      // navigate('/')
       
     }
     

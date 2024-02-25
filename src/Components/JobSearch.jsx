@@ -1,4 +1,21 @@
-const JobSearch = () => {
+import axios from "axios";
+
+const JobSearch = (props) => {
+  const hadleSubmit = (event) => {
+    event.preventDefault();
+    axios.get(`https://localhost:44322/api/Job/GetJobs?token=${localStorage.getItem('token')}`)
+    // axios.get(`https://localhost:44322/api/Job/GetJobs`,{
+    //   headers:{
+    //     Authorization: `Bearer ${localStorage.getItem('token')}`
+    //   }
+    // })
+    .then(data => {
+
+      console.log(data)
+      props.handleJobs(data.data)
+    })
+    .catch(error => {console.log(error)})
+  }
     return (
         <section
           className="home-section section-hero overlay bg-image"
@@ -57,6 +74,7 @@ const JobSearch = () => {
                     </div>
                     <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                       <button
+                      onClick={hadleSubmit}
                         type="submit"
                         className="btn btn-primary btn-lg btn-block text-white btn-search"
                       >

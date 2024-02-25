@@ -6,13 +6,14 @@ const Header = (props) => {
   const [signedIn, setSignedIN] = useState()
 
   useEffect(() => {
-    if(localStorage.getItem('signed')) {
+    if(localStorage.getItem('token')) {
       setSignedIN(true)
     }
   })
 
   const handleSignOut = () => {
-    localStorage.removeItem('signed')
+    localStorage.removeItem('token')
+    localStorage.removeItem('type')
     setSignedIN(false)
   }
   return (

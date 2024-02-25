@@ -1,10 +1,15 @@
+import { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserSignin = () => {
+  const [message, setmessage] = useState()
+  const navigate = useNavigate()
 
-  const submitHandler = ( ) => {
+  const submitHandler = (event ) => {
+    event.preventDefault();
     console.log('start request')
     const data = {
       id: 0,
@@ -12,18 +17,23 @@ const UserSignin = () => {
       lastName: "Hossam",
       position: "intern",
       email: "user@gmail.com",
-      username: "mariam",
+      username: "mariam4",
       password: "1234",
-      hashPassword : "string",
+      hashPassword: 'password',
       isActive: true,
       createdAte: Date.now()
     }  
-    axios.post('https://localhost:44322/api/User/user register', JSON.stringify(data))
+    axios.post('https://localhost:44322/api/User/user register', data)
     .then(data => {
       console.log(data)
-      // href="Explore.html"
+      if(data.status === 200) {
+        navigate('/Login')
+      }
     } )
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      setmessage(error.response.data.message)
+    })
   }
  
   return (
@@ -56,6 +66,7 @@ const UserSignin = () => {
           <div className="row">
             <div className="col-lg-6 mb-5">
               <h2 className="mb-4">Sign Up To SkillHunt</h2>
+              <span>{message}</span>
               <form action="#" className="p-4 border rounded">
                 <div className="mb-3 mt-3">
                   <label htmlFor="email">Email:</label>
