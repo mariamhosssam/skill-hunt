@@ -76,6 +76,7 @@ const Header = (props) => {
                     Company ?
                   </a> */}
                   <Link to="/CompanySignin"  
+                  
                   className="btn btn-outline-white border-width-2 d-none d-lg-inline-block" >
                    Company ?
                   </Link>   
