@@ -6,18 +6,21 @@ const JobListing = props => {
 
     useEffect(() => {
         // here we will receive jobs from backend instead of importing them
-        console.log('jobs:', props.jobs)
+        // console.log('jobs:', props.jobs)
     },[])
     return (
         <section className="site-section">
         <div className="container">
           <div className="row mb-5 justify-content-center">
             <div className="col-md-7 text-center">
-              <h2 className="section-title mb-2">{jobs.jobsCount} Job Listed</h2>
+              <h2 className="section-title mb-2">Job Listed</h2>
+              
+             {/* <h2 className="section-title mb-2">{jobs.jobsCount} Job Listed</h2> */}
+            
             </div>
           </div>
           <ul className="job-listings mb-5">
-            {props.jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)}
+            {/* {props.jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)} */}
             {/* <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
               <a href="job-single.html" />
               <div className="job-listing-logo">
