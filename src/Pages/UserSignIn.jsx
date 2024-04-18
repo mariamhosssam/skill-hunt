@@ -156,16 +156,16 @@ const UserSignin = () => {
     // jobTitle: "",
     // password: "",
     // rememberMe: false,
-    id: 0,
+    // id: 0,
     firstName: "",
     lastName: "",
     position: "",
     email: "",
     username: "aaa",
-    password: "",
-    hashPassword: 'password',
-    isActive: true,
-    createdAte: Date.now()
+    password: "front-end",
+    // hashPassword: 'password',
+    // isActive: true,
+    // createdAte: Date.now()
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -183,7 +183,7 @@ const UserSignin = () => {
     event.preventDefault();
     console.log("start request");
     axios
-      .post('https://localhost:7176/api/User/user register', formData)
+      .post('https://localhost:44322/api/User/user register', formData)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -192,7 +192,7 @@ const UserSignin = () => {
       })
       .catch((error) => {
         console.log(error);
-        setMessage(error.response.data.message);
+        setMessage(error?.response?.data?.message);
       });
   };
 
@@ -235,7 +235,7 @@ const UserSignin = () => {
                     className="form-control"
                     id="email"
                     placeholder="Enter email"
-                    name="email"
+                    name="email" 
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -271,7 +271,7 @@ const UserSignin = () => {
                     className="form-control"
                     id="jobTitle"
                     placeholder="Enter your job title"
-                    name="jobTitle"
+                    name="position"
                     value={formData.position}
                     onChange={handleChange}
                   />

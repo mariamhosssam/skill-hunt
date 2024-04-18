@@ -17,7 +17,7 @@ const JobListing = props => {
             </div>
           </div>
           <ul className="job-listings mb-5">
-            {props.jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)}
+            {/* {props.jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)} */}
             {/* <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
               <a href="job-single.html" />
               <div className="job-listing-logo">
