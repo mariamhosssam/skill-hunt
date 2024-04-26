@@ -5,7 +5,12 @@ import UserSignin from "./Pages/UserSignIn";
 import CompanySignin from "./Pages/CompanySignin";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
-import TechQ from "./Pages/TechQ";
+// import TechQ from "./Pages/techQ";
+import TechnicalQ from "./Pages/TechnicalQ";
+import CompanyApplications from "./Pages/CompanyApplications";
+import SoftSkillsVideo from "./Pages/SoftSkillsVideo";
+import JobListing from "./Components/Jobs/JobListing";
+import ApplyForJob from "./Pages/ApplyForJob";
 import {
   Route,
   RouterProvider,
@@ -15,6 +20,7 @@ import {
 import Root from "./Root";
 import Evaluation from "./Pages/Evaluation";
 import JobSingle from "./Pages/JobSingle";
+import PostJob from "./Pages/PostJob";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,7 +33,15 @@ const router = createBrowserRouter(
       <Route path="/yourEvaluation" element={<Evaluation />}></Route>
       <Route path = "/Dashboard" element = {<Dashboard/>} ></Route>
       <Route path = "/JobSingle" element = {<JobSingle/>} ></Route>
-      <Route path = "/TechQ" element = {<TechQ/>} ></Route>
+      <Route path = "/TechnicalQ" element = {<TechnicalQ/>} ></Route>
+      <Route path = "/PostJob" element = {<PostJob/>} ></Route>
+      <Route path = "/JobListing" element = {<JobListing/>} ></Route>
+      <Route path = "/CompanyApplications" element = {<CompanyApplications/>} ></Route>
+      <Route path = "/ApplyForJob" element = {<ApplyForJob/>} ></Route>
+      <Route path = "/SoftSkillsVideo" element = {<SoftSkillsVideo/>} ></Route>
+
+
+
     </Route>
   )
 );

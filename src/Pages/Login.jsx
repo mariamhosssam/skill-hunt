@@ -160,7 +160,8 @@ const Login = () => {
       .then((response) => {
         console.log(response.data);
         if (response.status === 200) {
-               localStorage.setItem('token', response.token)
+          console.log(response)
+               localStorage.setItem('token', response.data.token)
                navigate('/About')
                console.log(response.data.modelUser.type)
                if(response.data.modelUser.type === 'USER')

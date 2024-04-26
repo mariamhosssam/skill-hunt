@@ -1,3 +1,4 @@
+
 const Job = props => {
     const typeClass = props.type==='Full Time' ? 'badge-success' : 'badge-danger'
     return (

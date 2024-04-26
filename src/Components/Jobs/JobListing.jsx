@@ -1,14 +1,18 @@
 import { useEffect } from "react"
 import Job from "./Job"
 import jobs from "./jobs"
+import Header from "../Header"
+import Footer from "../Footer"
 
 const JobListing = props => {
 
     useEffect(() => {
         // here we will receive jobs from backend instead of importing them
-        console.log('jobs:', props.jobs)
+        console.log('jobs:', jobs.jobs)
     },[])
     return (
+      <div>
+    <Header pageTitle='The Easiest Way To Get Your Dream Job'></Header>
         <section className="site-section">
         <div className="container">
           <div className="row mb-5 justify-content-center">
@@ -17,7 +21,7 @@ const JobListing = props => {
             </div>
           </div>
           <ul className="job-listings mb-5">
-            {/* {props.jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)} */}
+            {jobs.jobs.map(j => <Job img={j.image} title={j.title} company={j.company} type={j.type}></Job>)}
             {/* <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
               <a href="job-single.html" />
               <div className="job-listing-logo">
@@ -37,7 +41,7 @@ const JobListing = props => {
                 </div>
               </div>
             </li> */}
-        //  </ul>
+          </ul>
           <div className="row pagination-wrap">
             <div className="col-md-6 text-center text-md-left mb-4 mb-md-0">
               <span>Showing 1-7 Of {jobs.jobsCount} Jobs</span>
@@ -61,8 +65,10 @@ const JobListing = props => {
               </div>
             </div>
           </div>
-       // </div>
-    //  </section>
+        </div>
+      </section>
+      <Footer></Footer>
+      </div>
     )
 }
 
