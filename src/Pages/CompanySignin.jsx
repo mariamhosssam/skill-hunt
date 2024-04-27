@@ -1,7 +1,68 @@
+import React, { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 const CompanySignin = () => {
+
+
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber:"",
+    foundationDate: Date.now(),
+    industry:"",
+    companyName:"",
+    message:""
+  });
+
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: val,
+    }));
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("start request");
+    axios
+      .get('https://localhost:7176/api/Company/Company register', formData)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          navigate("/Login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response && error.response.status === 400 && error.response.data.message === "Username already exists.") {
+          setMessage("Email already exists. Please choose a different Email.");
+        } else {
+          setMessage("An error occurred. Please try again later.");
+        }
+      });
+  };
+
+
+
+
+
+
+
   return (
     <div className="site-wrap">
       <Header></Header>
@@ -25,46 +86,51 @@ const CompanySignin = () => {
       <div className="row">
         <div className="col-lg-6 mb-5">
           <h2 className="mb-4">Sign Up To SkillHunt</h2>
-          <form action="#" className="p-4 border rounded">
-            <div className="mb-3 mt-3">
-              <label htmlFor="business email">Business Email:</label>
-              <input type="business email" className="form-control" id="business email" placeholder="Enter your business email" name="business email" />
-            </div>
-            <div className="mb-3 mt-3">
-              <label htmlFor="first name">First name:</label>
-              <input type="first name" className="form-control" id="first name" placeholder="Enter your first name" name="first name" />
-            </div>
-            <div className="mb-3 mt-3">
-              <label htmlFor="last name">Last name:</label>
-              <input type="last name" className="form-control" id="last name" placeholder="Enter your last name" name="last name" />
-            </div>
-            <div className="mb-3 mt-3">
-              <label htmlFor="mobile number">Mobile number:</label>
-              <input type="mobile number" className="form-control" id="mobile number" placeholder="Enter your mobile number" name="mobile number" />
-            </div>
-            <div className="mb-3 mt-3">
-              <label htmlFor="company name">Company name:</label>
-              <input type="company name" className="form-control" id="company name" placeholder="Enter your company name" name="company name" />
-            </div>
-            <div className="mb-3 mt-3">
-              <label htmlFor="Foundation date">Foundation date:</label>
-              <input type="Foundation date" className="form-control" id="Foundation date" placeholder="Enter the Foundation date" name="Foundation date" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="Industry">Industry:</label>
-              <input type="Industry" className="form-control" id="Industry" placeholder="Enter the Industry" name="Industry" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="pwd">Password:</label>
-              <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" />
-            </div>
-            <div className="form-check mb-3">
-              <label className="form-check-label">
-                <input className="form-check-input" type="checkbox" name="remember" /> Remember me
-              </label>
-            </div>
-            <a href="login.html">Submit</a>
-          </form>
+          <form onSubmit={handleSubmit} className="p-4 border rounded">
+          <div className="text-danger">{message}</div>
+  <div className="mb-3 mt-3">
+    <label htmlFor="email">Business Email:</label>
+    <input type="email" className="form-control" id="email" placeholder="Enter your business email" name="email" value={formData.email} onChange={handleChange} />
+  </div>
+  <div className="mb-3 mt-3">
+    <label htmlFor="firstName">First name:</label>
+    <input type="text" className="form-control" id="firstName" placeholder="Enter your first name" name="firstName" value={formData.firstName} onChange={handleChange} />
+  </div>
+  <div className="mb-3 mt-3">
+    <label htmlFor="lastName">Last name:</label>
+    <input type="text" className="form-control" id="lastName" placeholder="Enter your last name" name="lastName" value={formData.lastName} onChange={handleChange} />
+  </div>
+  <div className="mb-3 mt-3">
+    <label htmlFor="phoneNumber">Mobile number:</label>
+    <input type="tel" className="form-control" id="phoneNumber" placeholder="Enter your mobile number" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} />
+  </div>
+  <div className="mb-3 mt-3">
+    <label htmlFor="companyName">Company name:</label>
+    <input type="text" className="form-control" id="companyName" placeholder="Enter your company name" name="companyName" value={formData.companyName} onChange={handleChange} />
+  </div>
+  <div className="mb-3">
+    <label htmlFor="industry">Industry:</label>
+    <input type="text" className="form-control" id="industry" placeholder="Enter the Industry" name="industry" value={formData.industry} onChange={handleChange} />
+  </div>
+  <div className="mb-3 mt-3">
+            <label htmlFor="foundationDate">Foundation date:</label>
+             <input type="date" className="form-control" id="foundationDate" placeholder="Enter the Foundation date" name="foundationDate"
+              value={formData.foundationDate}
+              onChange={handleChange} />
+             </div>
+
+  <div className="mb-3">
+    <label htmlFor="password">Password:</label>
+    <input type="password" className="form-control" id="password" placeholder="Enter password" name="password" value={formData.password} onChange={handleChange} />
+  </div>
+  <div className="form-check mb-3">
+    <label className="form-check-label">
+      <input className="form-check-input" type="checkbox" name="remember" /> Remember me
+    </label>
+  </div>
+  <button type="submit" className="btn btn-primary">Submit</button>
+</form>
+
         </div>
       </div>
     </div>

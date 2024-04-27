@@ -7,10 +7,10 @@ import PartnerCompaniesListing from "../Components/PartnerCompaniesListing";
 import SiteStates from "../Components/SiteStates";
 
 const Index = () => {
-  const [jobs, setJob] = useState([])
+  const [thejobs, setJob] = useState([])
 
-  const receiveJobs = (jobs) => {
-    setJob(jobs)
+  const receiveJobs = (thejobs) => {
+    setJob(thejobs)
   }
   
   return ( 
@@ -20,7 +20,8 @@ const Index = () => {
         {/* HOME */}
         <JobSearch handleJobs={receiveJobs}></JobSearch>
         <SiteStates></SiteStates>
-       <JobListing jobs={jobs}></JobListing>
+       
+       <JobListing thejobs={thejobs}></JobListing>
         <section
           className="py-5 bg-image overlay-primary fixed overlay"
           style={{ backgroundImage: 'url("images/hero_1.jpg")' }}
