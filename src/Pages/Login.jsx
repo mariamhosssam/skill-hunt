@@ -164,6 +164,8 @@ const Login = () => {
                localStorage.setItem('token', response.data.token)
                navigate('/About')
                console.log(response.data.modelUser.type)
+               const userType = response.data.modelUser.type === 'USER' ? 0 : 1;
+               localStorage.setItem('usertype', userType);
                if(response.data.modelUser.type === 'USER')
                {
                 navigate('/About')

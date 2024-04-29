@@ -1,7 +1,8 @@
 // new
 import Footer from "../Components/Footer"
 import Header from "../Components/Header"
-const About = () => {
+import InterviewListing from "../Components/Interviews/InterviewListing"
+const Dashboard = () => {
     return (
         <div>
             <div className="site-wrap">
@@ -14,9 +15,10 @@ const About = () => {
                     <div className="site-mobile-menu-body" />
                 </div> {/* .site-mobile-menu */}
                 {/* NAVBAR */}
-                <Header pageTitle='Your Previous Interviews'></Header>
+                <Header pageTitle='Your Previous Virtual Interviews'></Header>
                 {/* HOME */}
-                <section className="site-section" id="next">
+                <InterviewListing></InterviewListing>
+                {/* <section className="site-section" id="next">
                     <div className="container">
                         <div className="row mb-5 justify-content-center">
                             <div className="col-md-7 text-center">
@@ -152,11 +154,11 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <Footer></Footer>
             </div>
         </div>
     )
 }
 
-export default About
+export default Dashboard
