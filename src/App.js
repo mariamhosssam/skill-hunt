@@ -11,7 +11,6 @@ import CompanyApplications from "./Pages/CompanyApplications";
 import SoftSkillsVideo from "./Pages/SoftSkillsVideo";
 import JobListing from "./Components/Jobs/JobListing";
 import ApplyForJob from "./Pages/ApplyForJob";
-import PostJob from "./Pages/PostJob"
 import Header from "./Components/Header";
 import JobDetails from './Components/Jobs/JobDetails';
 
@@ -31,11 +30,12 @@ import JobApplication from "./Pages/JobApplication";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root/>}>
+      <Route index element={<Index />}></Route>
 
       <Route path="/About" element={<About />}></Route>
       <Route path="/Login" element={<Login />}></Route>
 
-      <Route path="/Index" element={<Index />}></Route>
+      {/* <Route path="/Index" element={<Index />}></Route> */}
 
       <Route path="/UserSignIn" element={<UserSignin />}></Route>
       <Route path="/CompanySignin" element={<CompanySignin />}></Route>
@@ -61,6 +61,7 @@ const router = createBrowserRouter(
       {/* <Route path = "/JobDetails" element = {<JobDetails/>} ></Route> */}
 
     </Route>
+
   )
 );
 function App() {
