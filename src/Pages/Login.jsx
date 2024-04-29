@@ -16,7 +16,7 @@ const Login = () => {
     event.preventDefault();
     if(username&&password) {
       // send to api
-      axios.post('https://localhost:7176/api/User/login', {
+      axios.post('https://localhost:44322/api/User/login', {
         username: username,
         password: password
       })

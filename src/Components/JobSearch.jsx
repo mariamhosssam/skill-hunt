@@ -50,7 +50,7 @@ const JobSearch = (props) => {
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select
-                    className="selectpicker"
+                    className=" form-control form-control-lg"
                     value={region}
                     onChange={(e) => setRegion(e.target.value)}
                     title="Select Job region"
@@ -66,7 +66,7 @@ const JobSearch = (props) => {
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0 ">
                   <select
-                    className="selectpicker"
+                    className=" form-control form-control-lg"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                     title="Select Job Type"
