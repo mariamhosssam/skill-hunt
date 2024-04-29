@@ -148,6 +148,7 @@ import Header from "../Components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const UserSignin = () => {
   const [formData, setFormData] = useState({
     // email: "",
@@ -161,11 +162,11 @@ const UserSignin = () => {
     lastName: "",
     position: "",
     email: "",
-    username: "aaa",
-    password: "",
-    hashPassword: 'password',
-    isActive: true,
-    createdAte: Date.now()
+    username: "",
+    password: "front-end",
+     hashPassword: 'password',
+    // isActive: true,
+    // createdAte: Date.now()
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -176,12 +177,21 @@ const UserSignin = () => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: val,
-    }));
+    }
+   ))
+   if(name === 'email') {
+    setFormData((prevState) => ({
+      ...prevState,
+      username: val,
+    }
+   ))
+   }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("start request");
+    setFormData((prevState) => ({...prevState, username: prevState.email}))
     axios
       .post('https://localhost:7176/api/User/user register', formData)
       .then((response) => {

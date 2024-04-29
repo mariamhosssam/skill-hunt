@@ -23,12 +23,13 @@ const Login = () => {
       .then((response) => {
         console.log(response.data);
         if (response.status === 200) {
-               localStorage.setItem('token', response.data.token);
+          console.log(response)
+               localStorage.setItem('token', response.data.token)
                localStorage.setItem('userType', response.data.modelUser.type);
                localStorage.setItem('userId', response.data.modelUser.id);
                localStorage.setItem('firstName', response.data.modelUser.firstName);
-
-               
+               navigate('/About')
+               console.log(response.data.modelUser.type)
                if(response.data.modelUser.type === 'USER')
                {
                 navigate('/Index')
