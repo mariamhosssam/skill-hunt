@@ -1,6 +1,7 @@
 import Header from "../Header"
 import Footer from "../Footer"
-import Interview from "/Interview"
+import inter from "./inter"
+import Interview from "./Interview"
 import { useEffect } from "react"
 const InterviewListing = props => {
 
@@ -10,16 +11,15 @@ const InterviewListing = props => {
     },[])
     return (
       <div>
-    <Header pageTitle='The Easiest Way To Get Your Dream Job'></Header>
         <section className="site-section">
         <div className="container">
           <div className="row mb-5 justify-content-center">
             <div className="col-md-7 text-center">
-              {/* <h2 className="section-title mb-2">{jobs.jobsCount} Job Listed</h2> */}
+              <h2 className="section-title mb-2">{inter.interviewscount} virtual interviews</h2>
             </div>
           </div>
           <ul className="job-listings mb-5">
-            {/* {jobs.jobs.map(j => <Interview img={j.image} title={j.title} company={j.company} type={j.type}></Interview>)} */}
+            {inter.interviews.map(j => <Interview img={j.img} Num={j.Num} Date={j.Date} precentage={j.precentage}></Interview>)}
             {/* <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
               <a href="job-single.html" />
               <div className="job-listing-logo">
@@ -42,7 +42,7 @@ const InterviewListing = props => {
           </ul>
           <div className="row pagination-wrap">
             <div className="col-md-6 text-center text-md-left mb-4 mb-md-0">
-              <span>Showing 1-7 Of {jobs.jobsCount} Jobs</span>
+              <span>Showing 1-7 Of {inter.interviewscount} virtual interviews</span>
             </div>
             <div className="col-md-6 text-center text-md-right">
               <div className="custom-pagination ml-auto">
@@ -65,7 +65,6 @@ const InterviewListing = props => {
           </div>
         </div>
       </section>
-      <Footer></Footer>
       </div>
     )
 }

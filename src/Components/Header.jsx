@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Login from "../Pages/Login";
 
 const Header = (props) => {
   
   const [signedIn, setSignedIN] = useState()
+  const [userType, setUserType] = useState();
 
   useEffect(() => {
     if(localStorage.getItem('token')) {
       setSignedIN(true)
+      // const userType = localStorage.getItem('usertype');
+      const userType = '1';
+      setUserType(userType);
+          //console.log(userType)
+      // if(userType === '0' )console.log("i am user!")
+      // else console.log("i am company!")
     }
   })
 
   const handleSignOut = () => {
     localStorage.removeItem('token')
-    localStorage.removeItem('type')
+    localStorage.removeItem('usertype')
     setSignedIN(false)
   }
   return (
@@ -37,6 +45,7 @@ const Header = (props) => {
           <div className="site-logo col-6">
             <a href="index.html"> {props.title ? props.title : 'SkillHunt'}</a>
           </div>
+          
 
           <nav className="mx-auto site-navigation">
             <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -46,17 +55,33 @@ const Header = (props) => {
               <li>
                 <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/about'>About</NavLink>
               </li>
-              {signedIn && (
+              {signedIn && userType === '0' && (
                 <>
                   <li>
                 <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/Dashboard'>Dashboard</NavLink>
               </li>
-                  <li>
-                    <a href="virtualinterview.html" className="nav-link">
-                      Practice for interview?
-                    </a>
-                  </li>
+              <li className="has-children">
+            <a href="#">Practice for interview ?</a>
+            <ul className="dropdown">
+           <li>              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/TechnicalQ'>Technical Interview Questions</NavLink>
+</li>
+           <li> <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/SoftSkillsVideo'>Soft Skills Video Assessment </NavLink></li>
+           </ul>
+           </li>
+
                 </>
+              )}
+              {signedIn && userType  === '1'&& (
+                <>
+          <li>
+              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/PostJob'>Post a Job</NavLink>
+              </li>
+              <li>
+              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/CompanyApplications'>Jobs Applications</NavLink>
+              </li>
+                </>
+
+
               )}
 
               {/* <li class="has-children">
