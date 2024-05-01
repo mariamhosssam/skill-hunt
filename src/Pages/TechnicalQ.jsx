@@ -13,28 +13,50 @@ const TechnicalQ = () => {
 
      
     useEffect(() => {
-        const CreateSession = async () => {
-            const response = await fetch(`https://localhost:44322/api/TechnicalInterview/CreateSession?token=${token}&jobId=${jobId}`, {
-                method: 'POST',
-                headers: {
-                  //'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json'
-                },
-                params: {
-                    token,
-                    jobId 
-                }
-              }).then((response) => {
-                console.log(response.data);
-                if (response.status === 200) {
-                  console.log(response)
-                  SessionId= response.data.newSession.Id;
+        // const CreateSession = async () => {
+        //     const response = await fetch(`https://localhost:44322/api/TechnicalInterview/CreateSession?token=${token}&jobId=${jobId}`, {
+        //         method: 'POST',
+        //         headers: {
+        //           //'Authorization': `Bearer ${token}`,
+        //           'Content-Type': 'application/json'
+        //         },
+        //         params: {
+        //             token,
+        //             jobId 
+        //         }
+        //       }).then((response) => {
+        //         console.log(response.data);
+        //         if (response.status === 200) {
+        //           console.log(response)
+        //           SessionId= response.data.newSession.Id;
                       
               
-                }
-              })
-              .catch(e => console.log(e) )
-        }
+        //         }
+        //       })
+        //       .catch(e => console.log(e) )
+        // }
+        const CreateSession = async (token, jobId) => {
+          try {
+            const response = await axios.post(`https://localhost:44322/api/TechnicalInterview/CreateSession`, {
+              token: token,
+              jobId: jobId
+            }, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+        
+            if (response.status === 200) {
+              console.log(response.data);
+              const sessionId = response.data.newSession.Id;
+              return sessionId;
+            }
+          } catch (error) {
+            console.error(error);
+            // Handle errors
+            return null;
+          }
+        };
         const GetTechnicalQuestions = async () => {
             axios.get(`https://localhost:44322/api/TechnicalInterview/GetTechnicalQuestions?token=${token}&jobId=${jobId}`, {
                 method: 'GET',
@@ -54,29 +76,45 @@ const TechnicalQ = () => {
         CreateSession()
         GetTechnicalQuestions()
 
-    },[])
-    //bta3et eh ? -le amin-
-    
+    },[])    
 
 
-    const handleSubmit = async (event) => {
-     //   event.preventDefault();
+    // const handleSubmit = async (event) => {
+    //  //   event.preventDefault();
 
-    const response = await fetch('https://localhost:44322/api/TechnicalInterview/SubmitTheAnswers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          token,
-          jobId ,
+    // const response = await fetch('https://localhost:44322/api/TechnicalInterview/SubmitTheAnswers', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //       token,
+    //       jobId ,
+    //       questionId: questions[0]?.Id,
+    //       answer
+    //     })
+    //   }).then(data => console.log(data))
+    //   .catch(e => console.log(e) )
+    // }
+    const handleSubmit = async () => {
+      try {
+        const response = await axios.post('https://localhost:44322/api/TechnicalInterview/SubmitTheAnswers', {
+          token: token,
+          jobId: jobId,
           questionId: questions[0]?.Id,
-          answer
-        })
-      }).then(data => console.log(data))
-      .catch(e => console.log(e) )
-    }
-  
+          answer: answer
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+    
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        // Handle errors
+      }
+    };
 
     return (
         <div>
