@@ -11,7 +11,7 @@ import CompanyApplications from "./Pages/CompanyApplications";
 import SoftSkillsVideo from "./Pages/SoftSkillsVideo";
 import JobListing from "./Components/Jobs/JobListing";
 import ApplyForJob from "./Pages/ApplyForJob";
-import Header from "./Components/Header";
+import PostJob from "./Pages/PostJob"
 import JobDetails from './Components/Jobs/JobDetails';
 
 import {
@@ -24,7 +24,6 @@ import {
 import Root from "./Root";
 import Evaluation from "./Pages/Evaluation";
 import JobSingle from "./Pages/JobSingle";
-import PostJob from "./Pages/PostJob";
 import JobApplication from "./Pages/JobApplication";
 
 const router = createBrowserRouter(
@@ -61,7 +60,6 @@ const router = createBrowserRouter(
       {/* <Route path = "/JobDetails" element = {<JobDetails/>} ></Route> */}
 
     </Route>
-
   )
 );
 function App() {
