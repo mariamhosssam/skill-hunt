@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Login from "../Pages/Login";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Header = (props) => {
   
   const [signedIn, setSignedIN] = useState()
   const [userType, setUserType] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(localStorage.getItem('token')) {
       setSignedIN(true)
-      // const userType = localStorage.getItem('usertype');
-      const userType = '1';
+       const userType = localStorage.getItem('usertype');
       setUserType(userType);
           //console.log(userType)
       // if(userType === '0' )console.log("i am user!")
@@ -23,6 +26,7 @@ const Header = (props) => {
     localStorage.removeItem('token')
     localStorage.removeItem('usertype')
     setSignedIN(false)
+    navigate('/');
   }
   return (
     <>
