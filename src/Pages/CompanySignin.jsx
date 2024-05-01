@@ -40,7 +40,7 @@ const CompanySignin = () => {
     event.preventDefault();
     console.log("start request");
     axios
-      .get('https://localhost:7176/api/Company/Company register', formData)
+      .get(`${baseUrl}/api/Company/Company register`, formData)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {

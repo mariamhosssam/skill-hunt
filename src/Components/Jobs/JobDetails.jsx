@@ -42,7 +42,7 @@ const JobDetails = () => {
       const token = localStorage.getItem('token');
 
       // Make API call to fetch job details
-      const response = await fetch (`https://localhost:7176/api/Job/GetJob${jobId}?token=${token}`);
+      const response = await fetch (`${baseUrl}/api/Job/GetJob${jobId}?token=${token}`);
       
       if (response.ok) {
         const data = await response.json();
@@ -56,7 +56,7 @@ const JobDetails = () => {
   const applyForJob = async (jobId) => {
     const token = localStorage.getItem('token');
     axios
-      .get(`https://localhost:7176/api/Job/ApplyForJob?token=${token}&jobId=${jobId}`)
+      .get(`${baseUrl}/api/Job/ApplyForJob?token=${token}&jobId=${jobId}`)
       .then((response) => {
         //console.log(response);
   

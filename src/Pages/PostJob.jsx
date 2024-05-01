@@ -129,7 +129,7 @@ const PostJob = () => {
             event.preventDefault();    
             
         
-            axios.post('https://localhost:7176/api/Job/ADD JOB', newjob)
+            axios.post(`${baseUrl}/api/Job/ADD JOB`, newjob)
             .then(async(response) => {
                 if (response.status === 200) {
                     let jobPosted = localStorage.getItem('JobPosted');

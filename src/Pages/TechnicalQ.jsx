@@ -13,31 +13,9 @@ const TechnicalQ = () => {
 
      
     useEffect(() => {
-        // const CreateSession = async () => {
-        //     const response = await fetch(`https://localhost:44322/api/TechnicalInterview/CreateSession?token=${token}&jobId=${jobId}`, {
-        //         method: 'POST',
-        //         headers: {
-        //           //'Authorization': `Bearer ${token}`,
-        //           'Content-Type': 'application/json'
-        //         },
-        //         params: {
-        //             token,
-        //             jobId 
-        //         }
-        //       }).then((response) => {
-        //         console.log(response.data);
-        //         if (response.status === 200) {
-        //           console.log(response)
-        //           SessionId= response.data.newSession.Id;
-                      
-              
-        //         }
-        //       })
-        //       .catch(e => console.log(e) )
-        // }
         const CreateSession = async (token, jobId) => {
           try {
-            const response = await axios.post(`https://localhost:44322/api/TechnicalInterview/CreateSession`, {
+            const response = await axios.post(`${baseUrl}/api/TechnicalInterview/CreateSession`, {
               token: token,
               jobId: jobId
             }, {
@@ -58,7 +36,7 @@ const TechnicalQ = () => {
           }
         };
         const GetTechnicalQuestions = async () => {
-            axios.get(`https://localhost:44322/api/TechnicalInterview/GetTechnicalQuestions?token=${token}&jobId=${jobId}`, {
+            axios.get(`${baseUrl}/api/TechnicalInterview/GetTechnicalQuestions?token=${token}&jobId=${jobId}`, {
                 method: 'GET',
                 headers: {
                   //'Authorization': `Bearer ${token}`,
@@ -98,7 +76,7 @@ const TechnicalQ = () => {
     // }
     const handleSubmit = async () => {
       try {
-        const response = await axios.post('https://localhost:44322/api/TechnicalInterview/SubmitTheAnswers', {
+        const response = await axios.post(`${baseUrl}/api/TechnicalInterview/SubmitTheAnswers`, {
           token: token,
           jobId: jobId,
           questionId: questions[0]?.Id,

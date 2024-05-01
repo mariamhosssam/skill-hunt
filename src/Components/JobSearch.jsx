@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../Helpers";
 
 const JobSearch = (props) => {
   const [title, setTitle] = useState("");
@@ -11,7 +12,7 @@ const JobSearch = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .get("https://localhost:7176/api/Job/FilterJobs", {
+      .get(`${baseUrl}/api/Job/FilterJobs`, {
         params: {
           title: title,
           region: region,
