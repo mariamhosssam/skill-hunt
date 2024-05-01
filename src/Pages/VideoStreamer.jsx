@@ -82,9 +82,9 @@
 //   const saveBlobToApi = (blob) => {
 //     // const formData = new FormData();
 //     // const file = new File([blob], 'recording.webm', { type: 'video/webm' });
-  
+
 //     // formData.append('file', file);
-  
+
 //     // fetch('https://example.com/upload', {
 //     //   method: 'POST',
 //     //   body: formData
@@ -102,7 +102,7 @@
 //     //   console.error('Error uploading file:', error);
 //     // });
 //   };
-  
+
 
 //   return (
 //     <div>
@@ -153,44 +153,53 @@ const VideoPreview = ({ stream }) => {
   if (!stream) {
     return null;
   }
-  return <video ref={videoRef} width={500} height={500} autoPlay controls />;
+  return <video ref={videoRef} width={900} height={700} autoPlay controls />;
 };
 
-const VideoStreamer = () => {
-  const [recordedVideo, setRecordedVideo] = useState(null);
-  const { startRecording, stopRecording, mediaBlobUrl, status, clearBlobUrl , pauseRecording,resumeRecording , previewStream} = useReactMediaRecorder({
+const VideoStreamer = (props) => {
+  // const [recordedVideo, setRecordedVideo] = useState(null);
+  const { startRecording, stopRecording, mediaBlobUrl, status, clearBlobUrl, pauseRecording, resumeRecording, previewStream } = useReactMediaRecorder({
     video: true,
-    
-    // onStop: blobUrl => setRecordedVideo(blobUrl)
+    // onStop: blobUrl => setRecordedVideo(blobUrl),
+    // onStart: setRecordedVideo(null)
   });
 
-  const handleDelete = () => {
-    console.log("hi:" , mediaBlobUrl)
-    setRecordedVideo(null);
-    clearBlobUrl(mediaBlobUrl);
-    console.log("bye: ",mediaBlobUrl)
-  };
+  // const handleDelete = () => {
+  //   // console.log("hi:", mediaBlobUrl)
+  //   // setRecordedVideo(null);
+  //   clearBlobUrl(mediaBlobUrl);
+  //   // console.log("bye: ", mediaBlobUrl)
+  // };
+
+  const handleUpload = () => {
+    props.uploadVideo(mediaBlobUrl)
+  }
 
   return (
-    <div>
-      <p>{status}</p>
-      {
-        status === "idle" ? <button onClick={startRecording}>Start Recording</button> : <button onClick={stopRecording} >Stop Recording</button>
-      }
-      {/* ({status === "recording"})
+    <div className='video'>
+      <div className='video buttons'>
+        {
+          status === "idle" ? <button onClick={startRecording}>Start Recording</button> : <button onClick={stopRecording} >Stop Recording</button>
+        }
+        {/* ({status === "recording"})
        ? <button onClick={startRecording}>Start Recording</button> : <button onClick={pauseRecording} >Pause Recording</button> */}
-      {
-        status === "paused" ? <button onClick={resumeRecording} >resume Recording </button> :  <button onClick={pauseRecording} disabled={status !== "recording"}>Pause Recording</button>
-      }
-     
-      <button onClick={handleDelete} disabled={status !== "stopped"}>Delete Recording</button>
-    
-      <video src={mediaBlobUrl} controls autoPlay loop />
-      <VideoPreview stream={previewStream} />
+        {
+          status === "paused" ? <button onClick={resumeRecording} >resume Recording </button> : <button onClick={pauseRecording} disabled={status !== "recording"}>Pause Recording</button>
+        }
+
+        <button onClick={clearBlobUrl} disabled={status !== "stopped"}>Delete Recording</button>
+        <button onClick={handleUpload} disabled={status !== "stopped"}>Upload</button>
+
+      </div>
+
+
+      {status === "recording" || status === "paused" ?
+        <VideoPreview stream={previewStream} /> :
+        <video src={mediaBlobUrl} width={900} height={700} controls autoPlay loop />}
     </div>
   );
 
-      }
+}
 
 
-export default VideoStreamer;
+export default VideoStreamer;
