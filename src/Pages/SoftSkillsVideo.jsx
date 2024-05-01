@@ -38,7 +38,7 @@ const SoftSkillsVideo = () => {
 
   useEffect(() => {
     GetSoftSkillsQuestions();
-    axios.post(`${baseUrl}/api/SoftSkillsInterView/CreateSession?token=${token}&jobId=${jobId}`)
+    axios.post(`${baseUrl}/SoftSkillsInterView/CreateSession?token=${token}&jobId=${jobId}`)
     .then(response => {
       setSessionId(response.data)
     })
@@ -59,7 +59,7 @@ const SoftSkillsVideo = () => {
       formData.append('file', file);
   
       // Send FormData to API
-      axios.post(`${baseUrl}/api/SoftSkillsInterView/UploadVideo?SessionId=${sessionId}`, formData)
+      axios.post(`${baseUrl}/SoftSkillsInterView/UploadVideo?SessionId=${sessionId}`, formData)
       .then(response => {
         console.log(response)
       }).catch(err => console.log(err));

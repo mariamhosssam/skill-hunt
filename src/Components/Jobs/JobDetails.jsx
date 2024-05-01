@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import axios from "axios";
+import { baseUrl } from "../../Helpers";
+
 
 const JobDetails = () => {
   const location = useLocation();
@@ -42,7 +44,7 @@ const JobDetails = () => {
       const token = localStorage.getItem('token');
 
       // Make API call to fetch job details
-      const response = await fetch (`${baseUrl}/api/Job/GetJob${jobId}?token=${token}`);
+      const response = await fetch (`${baseUrl}/Job/GetJob${jobId}?token=${token}`);
       
       if (response.ok) {
         const data = await response.json();
@@ -56,7 +58,7 @@ const JobDetails = () => {
   const applyForJob = async (jobId) => {
     const token = localStorage.getItem('token');
     axios
-      .get(`${baseUrl}/api/Job/ApplyForJob?token=${token}&jobId=${jobId}`)
+      .get(`${baseUrl}/Job/ApplyForJob?token=${token}&jobId=${jobId}`)
       .then((response) => {
         //console.log(response);
   

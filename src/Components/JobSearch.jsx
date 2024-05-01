@@ -12,7 +12,7 @@ const JobSearch = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .get(`${baseUrl}/api/Job/FilterJobs`, {
+      .get(`${baseUrl}/Job/FilterJobs`, {
         params: {
           title: title,
           region: region,

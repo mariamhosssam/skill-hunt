@@ -20,6 +20,8 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseUrl } from "../Helpers";
+
 
 
 const PostJob = () => {
@@ -129,7 +131,7 @@ const PostJob = () => {
             event.preventDefault();    
             
         
-            axios.post(`${baseUrl}/api/Job/ADD JOB`, newjob)
+            axios.post(`${baseUrl}/Job/ADD JOB`, newjob)
             .then(async(response) => {
                 if (response.status === 200) {
                     let jobPosted = localStorage.getItem('JobPosted');

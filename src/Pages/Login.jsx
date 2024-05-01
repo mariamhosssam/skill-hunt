@@ -3,6 +3,7 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseUrl } from "../Helpers";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const Login = () => {
     if (username && password) {
       // send to api
       axios
-        .post("https://localhost:7176/api/User/login", {
+        .post(`${baseUrl}/User/login`, {
           username: username,
           password: password,
         })

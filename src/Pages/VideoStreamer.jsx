@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useReactMediaRecorder } from 'react-media-recorder';
 
 const VideoPreview = ({ stream }) => {

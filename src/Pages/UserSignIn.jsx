@@ -4,6 +4,7 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../Helpers";
 
 
 const UserSignin = () => {
@@ -50,7 +51,7 @@ const UserSignin = () => {
     console.log("start request");
     setFormData((prevState) => ({...prevState, username: prevState.email}))
     axios
-      .post(`${baseUrl}/api/User/user register`, formData)
+      .post(`${baseUrl}/User/user register`, formData)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {

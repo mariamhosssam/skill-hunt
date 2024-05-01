@@ -3,6 +3,8 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../Helpers";
+
 
 
 
@@ -40,7 +42,7 @@ const CompanySignin = () => {
     event.preventDefault();
     console.log("start request");
     axios
-      .get(`${baseUrl}/api/Company/Company register`, formData)
+      .get(`${baseUrl}/Company/Company register`, formData)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
