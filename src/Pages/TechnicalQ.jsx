@@ -79,7 +79,10 @@ const TechnicalQ = () => {
       <Header pageTitle='Top Technical Interview Questions'></Header>
       <section className="site-section">
         <div className="quiz-container">
-          <div id="quiz"></div>
+          {questions.map(question, index => (
+            <div id="quiz-" ></div>
+          ))}
+          
           <button id="submit-btn " onClick={handleSubmit}>Submit Answers</button>
         </div>
         <div id="results"></div>
