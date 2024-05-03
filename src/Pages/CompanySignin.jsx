@@ -40,11 +40,9 @@ const CompanySignin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("start request");
     axios
-      .get(`${baseUrl}/Company/Company register`, formData)
+      .post(`${baseUrl}/Company/Company register`, formData)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           navigate("/Login");
         }

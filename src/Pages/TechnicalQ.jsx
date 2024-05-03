@@ -6,10 +6,10 @@ import { baseUrl } from "../Helpers";
 
 const TechnicalQ = () => {
   const [questions, setQuestions] = useState([]);
-  const [answer, setAnswer] = useState('');
-  const [responseMessage, setResponseMessage] = useState('');
-  const [SessionId, setSessionId] = useState('');
-  const [data, setData] = useState(null);
+  const [answers, setAnswers] = useState([]);
+  const [responseMessage, setResponseMessage] = useState({});
+  // const [SessionId, setSessionId] = useState('');
+  // const [data, setData] = useState(null);
   const jobId = 1;
   const token = localStorage.getItem('token')
   let sessionId
@@ -19,15 +19,13 @@ const TechnicalQ = () => {
     const CreateSession = async () => {
       axios.post(`${baseUrl}/TechnicalInterview/CreateSession?token=${token}&jobId=${jobId}`)
         .then(response => {
-          console.log(response);
           sessionId = response.data;
         }).catch(err => console.error(err));
     };
     const GetTechnicalQuestions = async () => {
       axios.get(`${baseUrl}/TechnicalInterview/GetTechnicalQuestions?token=${token}&jobId=${jobId}`)
-        .then(data => {
-          console.log(data);
-          setQuestions(data.data)
+        .then(response => {
+          setQuestions(response.data)
         })
         .catch(e => console.log(e))
     }
@@ -55,37 +53,76 @@ const TechnicalQ = () => {
   //   .catch(e => console.log(e) )
   // }
   const handleSubmit = async () => {
-    try {
-      const response = await axios.post(`${baseUrl}/TechnicalInterview/SubmitTheAnswers`, {
-        token: token,
-        jobId: jobId,
-        questionId: questions[0]?.Id,
-        answer: answer
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-      // Handle errors
-    }
+      axios.post(`${baseUrl}/TechnicalInterview/SubmitTheAnswers?token=${token}&jobId=${jobId}`, answers)
+      .then(response => setResponseMessage({ message: response.data, state: 'success'}))
+      .catch(err => (
+        setResponseMessage({ message: 'An error occurred, please try again!', state: 'error'}),
+        console.log(err)
+      )
+    )
   };
+  const handleAnswer = (event, id) => {
+    console.log(id, event.target.value)
+    const answer = answers.find(a => a.questionId == id)
+    if(answer) {
+      answer.userAnswer = event.target.value
+      setAnswers(answers)
+    } else {
+      setAnswers(prev => [...prev, {questionId: id.toString(), userAnswer: event.target.value}])
+    }
+    setTimeout(() => {
+      console.log(answers)
+    }, 2000)
+  }
 
   return (
     <div>
       <Header pageTitle='Top Technical Interview Questions'></Header>
-      <section className="site-section">
-        <div className="quiz-container">
-          <div id="quiz"></div>
-          <button id="submit-btn " onClick={handleSubmit}>Submit Answers</button>
-        </div>
-        <div id="results"></div>
-        <script>
 
-        </script>
+      <section className="site-section">
+        <div className="container">
+          <div className="quiz-container">
+            {questions?.map((question, i) => (
+
+              <div className="row form-group" key={question.id}>
+                <div className="col-md-12 mb-3 mb-md-0">
+                  <label className="text-black" htmlFor={question.id}>
+                    {question.questionBody}
+                  </label>
+                  {question.answers.length > 0 ?
+                    (question.answers.map(answer => (
+                      <div key={answer.id}>
+                        <input onChange={(e) => handleAnswer(e, question.id)} type="radio" id={answer.id} name={question.id} value={answer.chooseBody} />{'  '}
+                        <label htmlFor={answer.chooseBody}>{answer.chooseBody}</label>
+                      </div>
+                    ))
+                    )
+                    : (<input
+                      onBlur={(e) => handleAnswer(e, question.id)}
+                      type="text"
+                      id={question.id}
+                      // value={username}
+                      className="form-control"
+                    // placeholder="Username"
+                    />)
+                  }
+                </div>
+              </div>
+
+              // <div id={"quiz-"+i} key={question.id}>
+              //   <div>{question.questionBody}</div>
+              //   {question.answers.length > 0 ? 
+              //   question.answers.map(answer => <div><input type="radio" id={answer.id} name={question.id} value={answer.chooseBody}/> <label for={answer.chooseBody}>{answer.chooseBody}</label></div> ) 
+              //   : <input type="text"></input>}
+
+              // </div>
+
+            ))}
+            <button id="submit-btn" className="btn px-4 btn-primary text-white" onClick={handleSubmit}>Submit Answers</button>
+          </div>
+          <br></br>
+          <div id="results" className={responseMessage.state === 'success' ? "text-success" : "text-danger"}>{responseMessage.message}</div>
+        </div>
       </section>
 
 

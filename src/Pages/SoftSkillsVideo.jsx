@@ -41,6 +41,7 @@ const SoftSkillsVideo = () => {
     axios.post(`${baseUrl}/SoftSkillsInterView/CreateSession?token=${token}&jobId=${jobId}`)
     .then(response => {
       setSessionId(response.data)
+
     })
   }, []);
 
@@ -73,6 +74,10 @@ const SoftSkillsVideo = () => {
     <div>
       <Header pageTitle='Soft skills Video Assessment'></Header>
       <section className="site-section">
+        <h1>Hello :)</h1>
+        <h3> I am an AI Model developed by "Skill Hunt team" ..
+          I'm delighted to engage in this interview with you ..
+          please start with introducing yourself !</h3>
         <ul>
             {questions?.map(question => (
               <li key={question.Id}>{question.questionBody}</li>
@@ -83,8 +88,6 @@ const SoftSkillsVideo = () => {
       </section>
       <Footer></Footer>
     </div>
-
-
   )
 }
 

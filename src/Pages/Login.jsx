@@ -21,9 +21,7 @@ const Login = () => {
           password: password,
         })
         .then((response) => {
-          console.log(response.data);
           if (response.status === 200) {
-            console.log(response);
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userType", response.data.modelUser.type);
             localStorage.setItem("userId", response.data.modelUser.id);
