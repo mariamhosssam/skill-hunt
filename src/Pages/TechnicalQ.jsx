@@ -3,7 +3,7 @@ import Footer from "../Components/Footer"
 import Header from "../Components/Header"
 import { useState, useEffect } from 'react';
 import { baseUrl } from "../Helpers";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const TechnicalQ = () => {
   const [questions, setQuestions] = useState([]);
@@ -11,15 +11,15 @@ const TechnicalQ = () => {
   const [responseMessage, setResponseMessage] = useState({});
   const [searchParams] = useSearchParams();
   const [loadingErrorMessage, setLoadingErrorMessage] = useState('')
+  const navigate = useNavigate()
   // const [SessionId, setSessionId] = useState('');
   // const [data, setData] = useState(null);
-  let jobId;
+  let jobId = searchParams.get('jobId');
   const token = localStorage.getItem('token')
   let sessionId
 
 
   useEffect(() => {
-    jobId = searchParams.get('jobId')
     const CreateSession = async () => {
       axios.post(`${baseUrl}/TechnicalInterview/CreateSession?token=${token}&jobId=${jobId}`)
         .then(response => {
@@ -61,7 +61,11 @@ const TechnicalQ = () => {
   // }
   const handleSubmit = async () => {
     axios.post(`${baseUrl}/TechnicalInterview/SubmitTheAnswers?token=${token}&jobId=${jobId}`, answers)
-      .then(response => setResponseMessage({ message: response.data, state: 'success' }))
+      .then(response => {
+        setResponseMessage({ message: response.data, state: 'success' })
+        navigate(`/SoftSkillsVideo?jobId=${jobId}`)
+      }
+      )
       .catch(err => (
         setResponseMessage({ message: 'An error occurred, please try again!', state: 'error' }),
         console.log(err)

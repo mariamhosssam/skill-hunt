@@ -4,6 +4,7 @@ import jobs from "./jobs";
 import Job from "./Job";
 
 const JobListing = (props) => {
+  
   console.log(props.thejobs)
   return (
     <section className="site-section">
@@ -14,17 +15,19 @@ const JobListing = (props) => {
           </div>
         </div>
         <ul className="job-listings mb-5">
-          {props.thejobs.map((job, index) => (
+          {props.thejobs?.map((job, index) => (
             <Job
+              key={job.id}
               id={job.id}
-              img= {`images/job_logo_${ (Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
-              title={job.jobTitle}
+              img= {job.imgPath ?? `images/job_logo_${ (Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
+              title={job.title}
               company={job.companyName}
-              type={job.jobType}
+              type={job.type}
+              region={job.region}
             />
           ))}
         </ul>
-        <div className="row pagination-wrap">
+        {/* <div className="row pagination-wrap">
           <div className="col-md-6 text-center text-md-left mb-4 mb-md-0">
             <span>Showing 1-7 Of {jobs.jobsCount} Jobs</span>
           </div>
@@ -46,7 +49,7 @@ const JobListing = (props) => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
