@@ -38,7 +38,7 @@ const router = createBrowserRouter(
 
       <Route path="/UserSignIn" element={<UserSignin />}></Route>
       <Route path="/CompanySignin" element={<CompanySignin />}></Route>
-      <Route path="/  " element={<Evaluation />}></Route>
+      <Route path="/Evaluation" element={<Evaluation />}></Route>
       <Route path = "/Dashboard" element = {<Dashboard/>} ></Route>
       <Route path = "/JobSingle" element = {<JobSingle/>} ></Route>
       <Route path = "/TechnicalQ" element = {<TechnicalQ/>} ></Route>
@@ -47,6 +47,8 @@ const router = createBrowserRouter(
       <Route path = "/CompanyApplications" element = {<CompanyApplications/>} ></Route>
       <Route path = "/ApplyForJob" element = {<ApplyForJob/>} ></Route>
       <Route path = "/SoftSkillsVideo" element = {<SoftSkillsVideo/>} ></Route>
+      <Route path = "/JobDetails" element = {<JobDetails/>} ></Route>
+
       <Route path = "/JobApplication" element = {<JobApplication/>} ></Route>
 
 
