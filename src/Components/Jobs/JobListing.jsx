@@ -5,7 +5,6 @@ import Job from "./Job";
 
 const JobListing = (props) => {
   
-  console.log(props.thejobs)
   return (
     <section className="site-section">
       <div className="container">

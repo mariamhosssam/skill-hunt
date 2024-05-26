@@ -11,8 +11,6 @@ const Header = (props) => {
   const [userType, setUserType] = useState();
   const navigate = useNavigate();
 
-  console.log(signedIn)
-  console.log(userType)
   useEffect(() => {
     if(localStorage.getItem('token')) {
       setSignedIN(true)

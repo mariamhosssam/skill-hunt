@@ -23,7 +23,6 @@ const Index = () => {
     axios.get(`${baseUrl}/Job/Site Stats`)
     .then(response => {
       setState(response.data);
-      console.log(response.data)
     }
     )
     .catch(err => console.log(err))
