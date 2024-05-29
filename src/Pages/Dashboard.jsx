@@ -18,18 +18,21 @@ const Dashboard = () => {
 
 
     useEffect(() => {
+        console.log(displayPractice)
         if (displayPractice) {
             if (practiceInterviews.length === 0) {
                 axios.get(`${baseUrl}/Report/GetReportsPractice?token=${token}`)
                     .then(response => {
                         console.log(response)
                         practiceInterviews = response.data
+                        setDisplayedInterviews(practiceInterviews)
                     })
                     .catch(err => {
                         console.log(err)
                     })
+            } else {
+                setDisplayedInterviews(practiceInterviews)
             }
-            setDisplayedInterviews(practiceInterviews)
 
         } else {
             if (interviewsApplications.length === 0) {
@@ -37,17 +40,20 @@ const Dashboard = () => {
                     .then(response => {
                         console.log(response)
                         interviewsApplications = response.data
+                        setDisplayedInterviews(interviewsApplications)
                     })
                     .catch(err => {
                         console.log(err)
                     })
+            } else {
+                setDisplayedInterviews(interviewsApplications)
             }
-            setDisplayedInterviews(interviewsApplications)
         }
     }, [displayPractice])
 
     const handleDisplayType = (event) => {
-        setDisplayPractice(event.target.value)
+        const value = Number(event.target.value)
+        setDisplayPractice(Boolean(value))
     }
 
     return (
@@ -59,8 +65,8 @@ const Dashboard = () => {
                     <div className="row mb-5 justify-content-center">
                         <div className="dropdown">
                             <select className="form-control" onChange={handleDisplayType}>
-                                <option value={true}>Practice Reports</option>
-                                <option value={false}>Application Reports</option>
+                                <option value={1}>Practice Reports</option>
+                                <option value={0}>Application Reports</option>
                             </select>
                         </div>
                         <div className="col-md-7 text-center">
@@ -68,8 +74,10 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <ul className="job-listings mb-5">
-                        {/* Date and TotalRate */}
-                        {displayedInterviews?.map(i => <ReportCard key={i.Id} id={i.Id} img={i.ImagePath} title={i.JobTitle} date={i.Date}></ReportCard>)}
+                        {displayedInterviews?.map(i => <ReportCard
+                            key={i.id} id={i.id} img={i.imagePath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`}
+                             title={i.jobTitle} date={i.date}
+                             totalRate={i.totalRate} isPractice={displayPractice}></ReportCard>)}
                     </ul>
                 </div>
             </section>
