@@ -25,6 +25,7 @@ const VideoStreamer = (props) => {
   }
 
   return (
+    <>
     <div className='video'>
       <div className='video buttons'>
         {
@@ -35,7 +36,7 @@ const VideoStreamer = (props) => {
         }
 
         <button onClick={clearBlobUrl} disabled={status !== "stopped"}>Delete Recording</button>
-        <button onClick={handleUpload} disabled={status !== "stopped"}>Upload</button>
+        {/* <button onClick={handleUpload} disabled={status !== "stopped"}>Submit Video</button> */}
 
       </div>
 
@@ -44,6 +45,9 @@ const VideoStreamer = (props) => {
         <VideoPreview stream={previewStream} /> :
         <video src={mediaBlobUrl} width={900} height={700} controls autoPlay loop />}
     </div>
+    <br></br>
+    <button id="submit-btn" className="btn px-4 btn-primary text-white"onClick={handleUpload} disabled={status !== "stopped"}>Submit Video</button>
+    </>
   );
 
 }

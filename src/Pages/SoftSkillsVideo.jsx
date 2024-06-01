@@ -1,6 +1,6 @@
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import VideoStreamer from "./VideoStreamer";
@@ -8,11 +8,15 @@ import { baseUrl } from "../Helpers";
 
 
 const SoftSkillsVideo = () => {
-
+  const navigae = useNavigate()
+  const [loadingErrorMessage, setLoadingErrorMessage] = useState('')
   const [questions, setQuestions] = useState([]);
   const [sessionId, setSessionId] = useState(null);
-  const jobId = 1;
   const token = localStorage.getItem('token')
+  const [searchParams] = useSearchParams();
+  let jobId = searchParams.get('jobId');
+  const [responseMessage, setResponseMessage] = useState({});
+
 
   const GetSoftSkillsQuestions = async () => {
     try {
@@ -41,7 +45,7 @@ const SoftSkillsVideo = () => {
     axios.post(`${baseUrl}/SoftSkillsInterView/CreateSession?token=${token}&jobId=${jobId}`)
     .then(response => {
       setSessionId(response.data)
-    })
+    }).catch(err => setLoadingErrorMessage(err.response.data))
   }, []);
 
   const sendFileToApi = async (blobUrl) => {
@@ -62,7 +66,13 @@ const SoftSkillsVideo = () => {
       axios.post(`${baseUrl}/SoftSkillsInterView/UploadVideo?SessionId=${sessionId}`, formData)
       .then(response => {
         console.log(response)
-      }).catch(err => console.log(err));
+        setResponseMessage({ message: response.data, state: 'success' })
+        navigae(`/ApplyForJob?jobId=${jobId}`)
+      }).catch(err => (
+        console.log(err),
+        setResponseMessage({ message: 'An error occurred, please try again!', state: 'error' })
+      )
+      );
   
     } catch (error) {
       console.error('Error converting Blob URL to File and sending to API:', error);
@@ -73,18 +83,32 @@ const SoftSkillsVideo = () => {
     <div>
       <Header pageTitle='Soft skills Video Assessment'></Header>
       <section className="site-section">
+        <div className="container">
+        {loadingErrorMessage && <h3 id="results" className="text-danger">{loadingErrorMessage}</h3>}
+        {!loadingErrorMessage && (
+          <section className="site-section">
+        <h1>Hello :)</h1>
+        <h3> I am an AI Model developed by "Skill Hunt team" ..
+          I'm delighted to engage in this interview with you ..
+          please start with introducing yourself !</h3>
         <ul>
             {questions?.map(question => (
               <li key={question.Id}>{question.questionBody}</li>
             ))}
         </ul>
         <VideoStreamer  uploadVideo={sendFileToApi}></VideoStreamer>
-        <Link to="/ApplyForJob">Company Additional Questions</Link>
+        <br></br>
+          <div id="results" className={responseMessage.state === 'success' ? "text-success" : "text-danger"}>{responseMessage.message}</div>
+        <br></br>
+        {/* <button id="submit-btn" className="btn px-4 btn-primary text-white" onClick={handleSubmit}>Company Additional Questions</button> */}
+        {/* <Link to="/ApplyForJob">Company Additional Questions</Link> */}
+      </section>
+        )}
+      
+      </div>
       </section>
       <Footer></Footer>
     </div>
-
-
   )
 }
 
