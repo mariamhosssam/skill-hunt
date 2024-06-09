@@ -9,7 +9,9 @@ const Job = (props) => {
   return (
     <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
      
-      <Link to={`/JobDetails?jobId=${props.id}`} />
+     {props.isApplication ? ( <Link to={`/CompanyApplications?jobId=${props.id}`} />) 
+     : ( <Link to={`/JobDetails?jobId=${props.id}`} />)}
+     
       
       <div className="job-listing-logo">
         <img

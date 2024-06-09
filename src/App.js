@@ -25,6 +25,7 @@ import Root from "./Root";
 import Evaluation from "./Pages/Evaluation";
 import JobSingle from "./Pages/JobSingle";
 import JobApplication from "./Pages/JobApplication";
+import CompanyJobs from "./Pages/CompanyJobs";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
       {/* <Route path = "/PostJob" element = {<PostJob/>} ></Route> */}
       <Route path = "/JobListing" element = {<JobListing/>} ></Route>
       <Route path = "/CompanyApplications" element = {<CompanyApplications/>} ></Route>
+      <Route path = "/CompanyJobs" element = {<CompanyJobs/>} ></Route>
       <Route path = "/ApplyForJob" element = {<ApplyForJob/>} ></Route>
       <Route path = "/SoftSkillsVideo" element = {<SoftSkillsVideo/>} ></Route>
       <Route path = "/JobDetails" element = {<JobDetails/>} ></Route>

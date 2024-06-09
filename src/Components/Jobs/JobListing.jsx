@@ -1,6 +1,5 @@
 
 import React from "react";
-import jobs from "./jobs";
 import Job from "./Job";
 
 const JobListing = (props) => {
@@ -9,20 +8,23 @@ const JobListing = (props) => {
     <section className="site-section">
       <div className="container">
         <div className="row mb-5 justify-content-center">
-          <div className="col-md-7 text-center">
-            <h2 className="section-title mb-2"> Jobs Listed</h2>
-          </div>
+          {!props.isApplication && (
+            <div className="col-md-7 text-center">
+              <h2 className="section-title mb-2"> Jobs Listed</h2>
+            </div>
+          )}
         </div>
         <ul className="job-listings mb-5">
           {props.thejobs?.map((job, index) => (
             <Job
               key={job.id}
               id={job.id}
-              img= {job.imgPath ?? `images/job_logo_${ (Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
+              img={job.imgPath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
               title={job.title}
               company={job.companyName}
               type={job.type}
               region={job.region}
+              isApplication={props.isApplication}
             />
           ))}
         </ul>

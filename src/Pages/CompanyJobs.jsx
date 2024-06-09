@@ -6,53 +6,40 @@ import Footer from "../Components/Footer"
 import axios from "axios"
 import { baseUrl } from "../Helpers"
 import { useLocation } from "react-router-dom"
+import JobListing from "../Components/Jobs/JobListing"
 
 
-const CompanyApplications = () => {
-  const location = useLocation();
+const CompanyJobs = () => {
   const [loadingErrorMessage, setLoadingErrorMessage] = useState('')
-  const [applications, setApplications] = useState([])
-
-  const searchParams = new URLSearchParams(location.search);
-  const jobId = searchParams.get("jobId");
   const token = localStorage.getItem('token');
+  const [jobs, setJobs] = useState({})
 
-  useEffect(() => {
-    axios.get(`${baseUrl}/report/GetAllReports?token=${token}&jobId=${jobId}`)
-      .then(response => {
-        setApplications(response.data)
-      })
-      .catch(err => console.log(err))
-  }, [])
 
-  return (
-    <div>
-      <Header pageTitle='Applications'></Header>
-      <div>
-        <section className="site-section" id="next">
-          <div className="container">
-            <div className="row mb-5 justify-content-center">
-              <div className="col-md-7 text-center">
-                <h2 className="section-title mb-2">{applications.length} Job Application(s)</h2>
-              </div>
-            </div>
-            <ul className="job-listings mb-5">
-              {applications.map(a => <Application
-                id={a.id} key={a.id}
-                img={a.imagePath} Name={a.name}
-                title={a.position} precentage={a.totalRate}
-                type={a.type} date={a.interviewDateTime}></Application>)}
-              <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                <a href="job-single.html" />
-                <div className="job-listing-logo">
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
+    useEffect(() => {
+       axios.get(`${baseUrl}/job/GetJobsByCompany?token=${token}`)
+       .then(response => {
+        setJobs(response.data)
+       })
+       .catch(err => console.log(err))
+    },[])
+
+    return (
+       <div>
+        <Header pageTitle='employees Applications'></Header>
+        <div>
+  <section className="site-section" id="next">
+    <div className="container">
+      <div className="row mb-5 justify-content-center">
+        <div className="col-md-7 text-center">
+          <h2 className="section-title mb-2">{jobs.jobsCount} Job(s) Posted</h2>
+        </div>
       </div>
+      <JobListing isApplication={true} thejobs={jobs.jobs}></JobListing>
+    </div>
+  </section>   
+</div>
 
-      {/* <div>   
+  {/* <div>   
   <section className="site-section" id="next">
     <div className="container">
       <div className="row mb-5 justify-content-center">
@@ -83,10 +70,10 @@ const CompanyApplications = () => {
     </div>
   </div>
   </div> */}
-      <Footer></Footer>
-    </div>
+  <Footer></Footer>
+</div>
 
-  )
+    )
 }
 
-export default CompanyApplications
+export default CompanyJobs

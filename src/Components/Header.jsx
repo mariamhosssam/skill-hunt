@@ -81,7 +81,7 @@ const Header = (props) => {
               <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/PostJob'>Post a Job</NavLink>
               </li>
               <li>
-              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/CompanyApplications'>Jobs Applications</NavLink>
+              <NavLink className={(navData) => navData.isActive ? 'active' : ''} to='/CompanyJobs'>Company jobs</NavLink>
               </li>
                 </>
 

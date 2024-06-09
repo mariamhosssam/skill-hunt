@@ -35,12 +35,12 @@ const PostJob = () => {
     /////////////////////////////////////////////////////////
 
     /*          for checkBox                 */
-    const [isChecked, setIsChecked] = useState(false); // State to manage the checkbox value
+    // const [isChecked, setIsChecked] = useState(false); // State to manage the checkbox value
 
     // Function to handle checkbox change
-    const handleCheckboxChange = (event) => {
-        setIsChecked(event.target.checked); // Update checkbox value in state
-    };
+    // const handleCheckboxChange = (event) => {
+    //     setIsChecked(event.target.checked); // Update checkbox value in state
+    // };
     //////////////////////////////////////////////////////////////////////  
 
     /*                      for questions                 */
@@ -109,7 +109,7 @@ const PostJob = () => {
             jobType: document.getElementById('job-type').value,
             jobDescription: document.getElementById('editor-1').textContent,
             questions: questions,
-            isShared: isChecked,
+            isShared: true,
             token: localStorage.getItem('token'),
             image: null// imageFile            // dont forgret this
         }
@@ -259,10 +259,10 @@ const PostJob = () => {
                                                 <label htmlFor="answer">Enter the answer:</label><br />
                                                 <input type="text" id="answer" className="form-control" /><br />
                                             </div>
-                                            <div className="form-group">
+                                            {/* <div className="form-group">
                                                 <label htmlFor="share">Share this question:</label>
                                                 <input type="checkbox" id="share" checked={isChecked} onChange={handleCheckboxChange} /><br />
-                                            </div>
+                                            </div> */}
                                             <div className="form-group">
                                                 <button type="button" onClick={() => handleAddQuestion("TECH")} className="btn btn-primary btn-md btn-file">
                                                     Add Question

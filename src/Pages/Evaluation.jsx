@@ -16,11 +16,11 @@ const Evaluation = () => {
   const [analysis, setAnalysis] = useState(undefined)
 
   useEffect(() => {
-    console.log(analysis)
     axios.get(`${baseUrl}/report/GetReport?token=${token}&reportId=${reportId}`)
       .then(response => {
         setAnalysis(response.data.bodyLanguageAnalysisResult)
       })
+      .catch(err => console.log(err))
   }, [])
   //   const questions = [
   //     {
@@ -57,11 +57,11 @@ const Evaluation = () => {
   // ]
   return (
     <div className="site-wrap">
-      <Header pageTitle='Your interview evaluation'></Header>
+      <Header pageTitle='Interview evaluation'></Header>
       <section className="site-section">
         <div className="container">
           <div className="rate-listings mb-5">
-            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis :</h3>
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
             {analysis && (
               <div>
                 <div>
