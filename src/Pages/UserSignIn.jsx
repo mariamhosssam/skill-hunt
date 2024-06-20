@@ -9,12 +9,6 @@ import { baseUrl } from "../Helpers";
 
 const UserSignin = () => {
   const [formData, setFormData] = useState({
-    // email: "",
-    // firstName: "",
-    // lastName: "",
-    // jobTitle: "",
-    // password: "",
-    // rememberMe: false,
     id: 0,
     firstName: "",
     lastName: "",
@@ -23,8 +17,6 @@ const UserSignin = () => {
     username: "",
     password: "front-end",
      hashPassword: 'password',
-    // isActive: true,
-    // createdAte: Date.now()
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();

@@ -55,12 +55,60 @@ const Evaluation = () => {
   //         "answers": []
   //     }
   // ]
+  
   return (
     <div className="site-wrap">
       <Header pageTitle='Interview evaluation'></Header>
       <section className="site-section">
-        <div className="container">
+        {analysis && (
+          <div className="container">
+          {/* EDITIED CV */}
           <div className="rate-listings mb-5">
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
+              <div>
+                <div>
+                  {/* Shoulders - Arm Rates */}
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Openness Rate :</span>
+                  <ProgressBar
+                    completed={((analysis.armPositionAnalysisRate+analysis.shouldersPositionAnalysisRate)/200) * 100}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                    <p>{analysis.armPositionAnalysisFeedback + ', while' + analysis.shouldersPositionAnalysisFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rate-listings mb-5">
+                  <div>
+                    {/* HappyFace - Eyes Rates*/}
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Confidence Rate :</span>
+                    <ProgressBar
+                    completed={((analysis.smilingRate+analysis.eyeTrackingRate)/200) * 100}
+                    />
+                    <div className="mb-5">
+                      <div style={{ width: '100%' }}>
+                      <p>{analysis.smilingFeedback+ ', while' + analysis.eyeTrackingFeedback}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  {/* Face Rate */}
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Relaxation Rate :</span>
+                  <ProgressBar
+                    completed={analysis.faceExpressionsRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.faceExpressionFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+          {/* CV */}
+          {/* <div className="rate-listings mb-5">
             <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
             {analysis && (
               <div>
@@ -124,58 +172,132 @@ const Evaluation = () => {
               </div>
             )
             }
-          </div>
+          </div> */}
 
-          {/* <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: 2/2</h3>
-          <div className="quiz-container">
-            {loadingErrorMessage && <h3 id="results" className="text-danger">{loadingErrorMessage}</h3>}
-            {!loadingErrorMessage && <>
-              {questions?.map((question, i) => (
-
-                <div className="row form-group" key={question.id}>
-                  <div className="col-md-12 mb-3 mb-md-0">
-                    <label className="text-black" htmlFor={question.id}>
-                      {question.questionBody}
-                    </label>
-                    {question?.answers?.length > 0 ?
-                      (question.answers.map(answer => (
-                        <div key={answer.id}>
-                          <input 
-                          // onChange={(e) => handleAnswer(e, question.id)}
-                          // value={'4 Pillars'}
-                          disabled={false}
-                           type="radio" id={answer.id} name={question.id} checked={answer.chooseBody === '4'} value={answer.chooseBody} />{'  '}
-                          <label htmlFor={answer.chooseBody}>{answer.chooseBody}</label>
-                        </div>
-                      ))
-                      )
-                      : (<input
-                        // onBlur={(e) => handleAnswer(e, question.id)}
-                        type="text"
-                        id={question.id}
-                        value={'4 Pillars'}
-                        disabled={false}
-                        className="form-control"
-                      // placeholder="Username"
-                      />)
-                    }
+          {/* NLP */}
+          <div className="rate-listings mb-5">
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />verbal communication analysis : </h3>
+              <div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Sentiment Analysis Rate :</span>
+                  <ProgressBar
+                    completed={analysis.sentimentPercentage}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.sentimentStatus}</p>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Readability Analysis Rate :</span>
+                  <ProgressBar
+                    completed={analysis.readabilityPercentage}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.readabilityNote}
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div>
+                <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>transcribed text:</span>
+                <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.transcribedText}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Entities:</span>
+                <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Name:</p>
+                    <span>  girgis magdy</span>
+                    </div>
+                    <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Date:</p>
+                    <span>  3 years</span>
+                    </div>
+                    <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Skills:</p>
+                    <span> Cloud Computing, Java, C#, Python/span</span>
+                    </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Suggested Jobs :</span>
+                  <div className="mb-3">
+                {analysis.sortedJobs.map((j, index) => (
+                        <div key={index} style={{ width: '30%', marginBottom: '10px' }}>
+                            <span>{j.jobTitle}</span>
+                            <ProgressBar completed={j.similarityScore} />
+                        </div>
+                    ))}
+                    
+                  </div>
+                </div>
+              </div>
+              </div>
+            {/* )
+          </div>
+          // {/* <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: 2/2</h3>
+          // <div className="quiz-container">
+          //   {loadingErrorMessage && <h3 id="results" className="text-danger">{loadingErrorMessage}</h3>}
+          //   {!loadingErrorMessage && <>
+          //     {questions?.map((question, i) => (
 
-                // <div id={"quiz-"+i} key={question.id}>
-                //   <div>{question.questionBody}</div>
-                //   {question.answers.length > 0 ? 
-                //   question.answers.map(answer => <div><input type="radio" id={answer.id} name={question.id} value={answer.chooseBody}/> <label for={answer.chooseBody}>{answer.chooseBody}</label></div> ) 
-                //   : <input type="text"></input>}
+          //       <div className="row form-group" key={question.id}>
+          //         <div className="col-md-12 mb-3 mb-md-0">
+          //           <label className="text-black" htmlFor={question.id}>
+          //             {question.questionBody}
+          //           </label>
+          //           {question?.answers?.length > 0 ?
+          //             (question.answers.map(answer => (
+          //               <div key={answer.id}>
+          //                 <input 
+          //                 // onChange={(e) => handleAnswer(e, question.id)}
+          //                 // value={'4 Pillars'}
+          //                 disabled={false}
+          //                  type="radio" id={answer.id} name={question.id} checked={answer.chooseBody === '4'} value={answer.chooseBody} />{'  '}
+          //                 <label htmlFor={answer.chooseBody}>{answer.chooseBody}</label>
+          //               </div>
+          //             ))
+          //             )
+          //             : (<input
+          //               // onBlur={(e) => handleAnswer(e, question.id)}
+          //               type="text"
+          //               id={question.id}
+          //               value={'4 Pillars'}
+          //               disabled={false}
+          //               className="form-control"
+          //             // placeholder="Username"
+          //             />)
+          //           }
+          //         </div>
+          //       </div>
 
-                // </div>
+          //       // <div id={"quiz-"+i} key={question.id}>
+          //       //   <div>{question.questionBody}</div>
+          //       //   {question.answers.length > 0 ? 
+          //       //   question.answers.map(answer => <div><input type="radio" id={answer.id} name={question.id} value={answer.chooseBody}/> <label for={answer.chooseBody}>{answer.chooseBody}</label></div> ) 
+          //       //   : <input type="text"></input>}
 
-              ))}
-            </>}
-            <br></br>
-            <div id="results">2/2</div>
-          </div> */}
+          //       // </div>
+
+          //     ))}
+          //   </>}
+          //   <br></br>
+          //   <div id="results">2/2</div>
+          // </div> */}
         </div>
+        )}
       </section>
       <Footer></Footer>
     </div>
