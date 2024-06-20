@@ -19,7 +19,8 @@ const JobListing = (props) => {
             <Job
               key={job.id}
               id={job.id}
-              img={job.imgPath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
+              // img={job.imgPath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`}//{job.imgPath}
+              img='images/job.png'
               title={job.title}
               company={job.companyName}
               type={job.type}

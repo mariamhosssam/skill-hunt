@@ -75,7 +75,9 @@ const Dashboard = () => {
                     </div>
                     <ul className="job-listings mb-5">
                         {displayedInterviews?.map(i => <ReportCard
-                            key={i.id} id={i.id} img={i.imagePath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`}
+                            key={i.id} id={i.id} 
+                            img='images/applicant.jpg'
+                            // img={i.imagePath ?? `images/job_logo_${(Math.floor(Math.random() * 5) + 1).toString()}.jpg`
                              title={i.jobTitle} date={i.date}
                              totalRate={i.totalRate} isPractice={displayPractice}></ReportCard>)}
                     </ul>
