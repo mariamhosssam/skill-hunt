@@ -23,86 +23,202 @@ const Evaluation = () => {
         setResult(response.data.questions.filter(q => q.isCorrect).length)
       })
   }, [])
- 
+
   return (
     <div className="site-wrap">
       <Header pageTitle='Interview evaluation' rate={90}></Header>
       <section className="site-section">
-        <div className="container">
-          {analysis && (
-            <>
-              <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Personal Information: </h3>
+        {analysis && (
+          <div className="container">
+             <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Personal Information: </h3>
               <div className="h5 d-flex align-items-center mb-4" >Name: {analysis?.applicant.name}</div>
               <div className="h5 d-flex align-items-center mb-4">Email: {analysis?.applicant.email}</div>
               <div className="h5 d-flex align-items-center mb-4">Position: {analysis?.applicant.position}</div>
-              <div className="rate-listings mb-5">
-                <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis: </h3>
-                {analysis && (
+          {/* EDITIED CV */}
+          <div className="rate-listings mb-5">
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
+              <div>
+                <div>
+                  {/* Shoulders - Arm Rates */}
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Openness Rate :</span>
+                  <ProgressBar
+                    completed={((analysis.armPositionAnalysisRate+analysis.shouldersPositionAnalysisRate)/200) * 100}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                    <p>{analysis.armPositionAnalysisFeedback + ', while' + analysis.shouldersPositionAnalysisFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rate-listings mb-5">
                   <div>
-                    <div>
-                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Arm Rate :</span>
-                      <ProgressBar
-                        completed={analysis.bodyLanguageAnalysisResult.armPositionAnalysisRate}
-                      />
-                      <div className="mb-5">
-                        <div style={{ width: '100%' }}>
-                          <p>{analysis.bodyLanguageAnalysisResult.armPositionAnalysisFeedback}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="rate-listings mb-5">
-                      <div>
-                        <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Shoulders Rate :</span>
-                        <ProgressBar
-                          completed={analysis.bodyLanguageAnalysisResult.shouldersPositionAnalysisRate}
-                        />
-                        <div className="mb-5">
-                          <div style={{ width: '100%' }}>
-                            <p>{analysis.bodyLanguageAnalysisResult.shouldersPositionAnalysisFeedback}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Face Rate :</span>
-                      <ProgressBar
-                        completed={analysis.bodyLanguageAnalysisResult.faceExpressionsRate}
-                      />
-                      <div className="mb-5">
-                        <div style={{ width: '100%' }}>
-                          <p>{analysis.bodyLanguageAnalysisResult.faceExpressionFeedback}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Happy Face Rate :</span>
-                      <ProgressBar
-                        completed={analysis.bodyLanguageAnalysisResult.smilingRate}
-                      />
-                      <div className="mb-5">
-                        <div style={{ width: '100%' }}>
-                          <p>{analysis.bodyLanguageAnalysisResult.smilingFeedback}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Eyes Rate :</span>
-                      <ProgressBar
-                        completed={analysis.bodyLanguageAnalysisResult.eyeTrackingRate}
-                      />
-                      <div className="mb-5">
-                        <div style={{ width: '100%' }}>
-                          <p>{analysis.bodyLanguageAnalysisResult.eyeTrackingFeedback}</p>
-                        </div>
+                    {/* HappyFace - Eyes Rates*/}
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Confidence Rate :</span>
+                    <ProgressBar
+                    completed={((analysis.smilingRate+analysis.eyeTrackingRate)/200) * 100}
+                    />
+                    <div className="mb-5">
+                      <div style={{ width: '100%' }}>
+                      <p>{analysis.smilingFeedback+ ', while' + analysis.eyeTrackingFeedback}</p>
                       </div>
                     </div>
                   </div>
-                )
-                }
+                </div>
+                <div>
+                  {/* Face Rate */}
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Relaxation Rate :</span>
+                  <ProgressBar
+                    completed={analysis.faceExpressionsRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.faceExpressionFeedback}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
+            
+          </div>
+          {/* CV */}
+          {/* <div className="rate-listings mb-5">
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
+            {analysis && (
+              <div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Arm Rate :</span>
+                  <ProgressBar
+                    completed={analysis.armPositionAnalysisRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.armPositionAnalysisFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rate-listings mb-5">
+                  <div>
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Shoulders Rate :</span>
+                    <ProgressBar
+                      completed={analysis.shouldersPositionAnalysisRate}
+                    />
+                    <div className="mb-5">
+                      <div style={{ width: '100%' }}>
+                        <p>{analysis.shouldersPositionAnalysisFeedback}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Face Rate :</span>
+                  <ProgressBar
+                    completed={analysis.faceExpressionsRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.faceExpressionFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Happy Face Rate :</span>
+                  <ProgressBar
+                    completed={analysis.smilingRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.smilingFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Eyes Rate :</span>
+                  <ProgressBar
+                    completed={analysis.eyeTrackingRate}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.eyeTrackingFeedback}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+            }
+          </div> */}
 
-
-               <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: {result}/{analysis.questions.length}</h3>
+          {/* NLP */}
+          <div className="rate-listings mb-5">
+            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />verbal communication analysis : </h3>
+              <div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Sentiment Analysis Rate :</span>
+                  <ProgressBar
+                    completed={analysis.sentimentPercentage}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.sentimentStatus}</p>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Readability Analysis Rate :</span>
+                  <ProgressBar
+                    completed={analysis.readabilityPercentage}
+                  />
+                  <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.readabilityNote}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>transcribed text:</span>
+                <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <p>{analysis.transcribedText}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Entities:</span>
+                <div className="mb-5">
+                    <div style={{ width: '100%' }}>
+                      <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Name:</p>
+                    <span>  girgis magdy</span>
+                    </div>
+                    <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Date:</p>
+                    <span>  3 years</span>
+                    </div>
+                    <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', display: 'inline' }}>Skills:</p>
+                    <span> Cloud Computing, Java, C#, Python/span</span>
+                    </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Suggested Jobs :</span>
+                  <div className="mb-3">
+                {analysis.sortedJobs?.map((j, index) => (
+                        <div key={index} style={{ width: '30%', marginBottom: '10px' }}>
+                            <span>{j.jobTitle}</span>
+                            <ProgressBar completed={j.similarityScore} />
+                        </div>
+                    ))}
+                    
+                  </div>
+                </div>
+              </div>
+              </div>
+           {/* //technical questions */}
+           <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: {result}/{analysis.questions.length}</h3>
           <div className="quiz-container">
               {analysis.questions?.map((question, i) => (
 
@@ -124,9 +240,8 @@ const Evaluation = () => {
 
               ))}
           </div>
-            </>
-          )}
         </div>
+        )}
       </section>
       <Footer></Footer>
     </div>

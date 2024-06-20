@@ -6,13 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../Helpers";
 
 
-
-
-
 const CompanySignin = () => {
-
-
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
