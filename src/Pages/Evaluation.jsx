@@ -14,167 +14,118 @@ const Evaluation = () => {
   const reportId = searchParams.get("id");
   const token = localStorage.getItem('token');
   const [analysis, setAnalysis] = useState(undefined)
-
+  const [result, setResult] = useState(0)
   useEffect(() => {
     axios.get(`${baseUrl}/report/GetReport?token=${token}&reportId=${reportId}`)
       .then(response => {
-        setAnalysis(response.data.bodyLanguageAnalysisResult)
+        console.log(response.data)
+        setAnalysis(response.data)
+        setResult(response.data.questions.filter(q => q.isCorrect).length)
       })
-      .catch(err => console.log(err))
   }, [])
-  //   const questions = [
-  //     {
-  //         "id": 1,
-  //         "questionBody": "How many Pillars for OOP?",
-  //         "answers": [
-  //             {
-  //                 "id": 1,
-  //                 "chooseBody": "4",
-  //                 "questionId": 1
-  //             },
-  //             {
-  //                 "id": 2,
-  //                 "chooseBody": "5",
-  //                 "questionId": 1
-  //             },
-  //             {
-  //                 "id": 3,
-  //                 "chooseBody": "1",
-  //                 "questionId": 1
-  //             },
-  //             {
-  //                 "id": 4,
-  //                 "chooseBody": "2",
-  //                 "questionId": 1
-  //             }
-  //         ]
-  //     },
-  //     {
-  //         "id": 2,
-  //         "questionBody": "How many Pillars for OOP",
-  //         "answers": []
-  //     }
-  // ]
+ 
   return (
     <div className="site-wrap">
-      <Header pageTitle='Interview evaluation'></Header>
+      <Header pageTitle='Interview evaluation' rate={90}></Header>
       <section className="site-section">
         <div className="container">
-          <div className="rate-listings mb-5">
-            <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis : </h3>
-            {analysis && (
-              <div>
-                <div>
-                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Arm Rate :</span>
-                  <ProgressBar
-                    completed={analysis.armPositionAnalysisRate}
-                  />
-                  <div className="mb-5">
-                    <div style={{ width: '100%' }}>
-                      <p>{analysis.armPositionAnalysisFeedback}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="rate-listings mb-5">
+          {analysis && (
+            <>
+              <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Personal Information: </h3>
+              <div className="h5 d-flex align-items-center mb-4" >Name: {analysis?.applicant.name}</div>
+              <div className="h5 d-flex align-items-center mb-4">Email: {analysis?.applicant.email}</div>
+              <div className="h5 d-flex align-items-center mb-4">Position: {analysis?.applicant.position}</div>
+              <div className="rate-listings mb-5">
+                <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Nonverbal communication analysis: </h3>
+                {analysis && (
                   <div>
-                    <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Shoulders Rate :</span>
-                    <ProgressBar
-                      completed={analysis.shouldersPositionAnalysisRate}
-                    />
-                    <div className="mb-5">
-                      <div style={{ width: '100%' }}>
-                        <p>{analysis.shouldersPositionAnalysisFeedback}</p>
+                    <div>
+                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Arm Rate :</span>
+                      <ProgressBar
+                        completed={analysis.bodyLanguageAnalysisResult.armPositionAnalysisRate}
+                      />
+                      <div className="mb-5">
+                        <div style={{ width: '100%' }}>
+                          <p>{analysis.bodyLanguageAnalysisResult.armPositionAnalysisFeedback}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="rate-listings mb-5">
+                      <div>
+                        <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Shoulders Rate :</span>
+                        <ProgressBar
+                          completed={analysis.bodyLanguageAnalysisResult.shouldersPositionAnalysisRate}
+                        />
+                        <div className="mb-5">
+                          <div style={{ width: '100%' }}>
+                            <p>{analysis.bodyLanguageAnalysisResult.shouldersPositionAnalysisFeedback}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Face Rate :</span>
+                      <ProgressBar
+                        completed={analysis.bodyLanguageAnalysisResult.faceExpressionsRate}
+                      />
+                      <div className="mb-5">
+                        <div style={{ width: '100%' }}>
+                          <p>{analysis.bodyLanguageAnalysisResult.faceExpressionFeedback}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Happy Face Rate :</span>
+                      <ProgressBar
+                        completed={analysis.bodyLanguageAnalysisResult.smilingRate}
+                      />
+                      <div className="mb-5">
+                        <div style={{ width: '100%' }}>
+                          <p>{analysis.bodyLanguageAnalysisResult.smilingFeedback}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Eyes Rate :</span>
+                      <ProgressBar
+                        completed={analysis.bodyLanguageAnalysisResult.eyeTrackingRate}
+                      />
+                      <div className="mb-5">
+                        <div style={{ width: '100%' }}>
+                          <p>{analysis.bodyLanguageAnalysisResult.eyeTrackingFeedback}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Face Rate :</span>
-                  <ProgressBar
-                    completed={analysis.faceExpressionsRate}
-                  />
-                  <div className="mb-5">
-                    <div style={{ width: '100%' }}>
-                      <p>{analysis.faceExpressionFeedback}</p>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Happy Face Rate :</span>
-                  <ProgressBar
-                    completed={analysis.smilingRate}
-                  />
-                  <div className="mb-5">
-                    <div style={{ width: '100%' }}>
-                      <p>{analysis.smilingFeedback}</p>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Eyes Rate :</span>
-                  <ProgressBar
-                    completed={analysis.eyeTrackingRate}
-                  />
-                  <div className="mb-5">
-                    <div style={{ width: '100%' }}>
-                      <p>{analysis.eyeTrackingFeedback}</p>
-                    </div>
-                  </div>
-                </div>
+                )
+                }
               </div>
-            )
-            }
-          </div>
 
-          {/* <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: 2/2</h3>
+
+               <h3 className="h5 d-flex align-items-center mb-4 text-primary"><span className="icon-align-left mr-3" />Job answers result: {result}/{analysis.questions.length}</h3>
           <div className="quiz-container">
-            {loadingErrorMessage && <h3 id="results" className="text-danger">{loadingErrorMessage}</h3>}
-            {!loadingErrorMessage && <>
-              {questions?.map((question, i) => (
+              {analysis.questions?.map((question, i) => (
 
                 <div className="row form-group" key={question.id}>
                   <div className="col-md-12 mb-3 mb-md-0">
                     <label className="text-black" htmlFor={question.id}>
                       {question.questionBody}
                     </label>
-                    {question?.answers?.length > 0 ?
-                      (question.answers.map(answer => (
-                        <div key={answer.id}>
+                   {question.answers.map(answer => (
+                        <div key={answer.id} className={answer.chooseBody == question.userAnswer? ( question.isCorrect ?  ' alert-success': ' alert-danger'): ''}>
                           <input 
-                          // onChange={(e) => handleAnswer(e, question.id)}
-                          // value={'4 Pillars'}
                           disabled={false}
-                           type="radio" id={answer.id} name={question.id} checked={answer.chooseBody === '4'} value={answer.chooseBody} />{'  '}
+                           type="radio" id={answer.id} name={question.id} checked={answer.chooseBody == question.userAnswer} value={answer.chooseBody} />{'  '}
                           <label htmlFor={answer.chooseBody}>{answer.chooseBody}</label>
                         </div>
-                      ))
-                      )
-                      : (<input
-                        // onBlur={(e) => handleAnswer(e, question.id)}
-                        type="text"
-                        id={question.id}
-                        value={'4 Pillars'}
-                        disabled={false}
-                        className="form-control"
-                      // placeholder="Username"
-                      />)
-                    }
+                      ))}
                   </div>
                 </div>
 
-                // <div id={"quiz-"+i} key={question.id}>
-                //   <div>{question.questionBody}</div>
-                //   {question.answers.length > 0 ? 
-                //   question.answers.map(answer => <div><input type="radio" id={answer.id} name={question.id} value={answer.chooseBody}/> <label for={answer.chooseBody}>{answer.chooseBody}</label></div> ) 
-                //   : <input type="text"></input>}
-
-                // </div>
-
               ))}
-            </>}
-            <br></br>
-            <div id="results">2/2</div>
-          </div> */}
+          </div>
+            </>
+          )}
         </div>
       </section>
       <Footer></Footer>

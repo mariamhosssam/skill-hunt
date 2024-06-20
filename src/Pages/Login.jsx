@@ -79,7 +79,7 @@ const Login = () => {
                 <div className="row form-group">
                   <div className="col-md-12 mb-3 mb-md-0">
                     <label className="text-black" htmlFor="username">
-                      Username
+                      Email
                     </label>
                     <input
                       onChange={handleUsername}

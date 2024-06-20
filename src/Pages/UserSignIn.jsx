@@ -21,7 +21,7 @@ const UserSignin = () => {
     position: "",
     email: "",
     username: "",
-    password: "front-end",
+    password: "",
      hashPassword: 'password',
     // isActive: true,
     // createdAte: Date.now()

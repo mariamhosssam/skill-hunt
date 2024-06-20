@@ -102,7 +102,13 @@ const TechnicalQ = () => {
                     <label className="text-black" htmlFor={question.id}>
                       {question.questionBody}
                     </label>
-                    {question.answers.length > 0 ?
+                    {question.answers.map(answer => (
+                        <div key={answer.id}>
+                          <input onChange={(e) => handleAnswer(e, question.id)} type="radio" id={answer.id} name={question.id} value={answer.chooseBody} />{'  '}
+                          <label htmlFor={answer.chooseBody}>{answer.chooseBody}</label>
+                        </div>
+                      ))}
+                    {/* {question.answers.length > 0 ?
                       (question.answers.map(answer => (
                         <div key={answer.id}>
                           <input onChange={(e) => handleAnswer(e, question.id)} type="radio" id={answer.id} name={question.id} value={answer.chooseBody} />{'  '}
@@ -118,7 +124,7 @@ const TechnicalQ = () => {
                         className="form-control"
                       // placeholder="Username"
                       />)
-                    }
+                    } */}
                   </div>
                 </div>
 
@@ -131,7 +137,8 @@ const TechnicalQ = () => {
                 // </div>
 
               ))}
-              <button id="submit-btn" className="btn px-4 btn-primary text-white" onClick={handleSubmit}>Submit Answers</button>
+              {localStorage.getItem('usertype') == 0 && <button id="submit-btn" className="btn px-4 btn-primary text-white" onClick={handleSubmit}>Submit Answers</button>}
+              
             </>}
           </div>
           <br></br>

@@ -46,7 +46,8 @@ const VideoStreamer = (props) => {
         <video src={mediaBlobUrl} width={900} height={700} controls autoPlay loop />}
     </div>
     <br></br>
-    <button id="submit-btn" className="btn px-4 btn-primary text-white"onClick={handleUpload} disabled={status !== "stopped"}>Submit Video</button>
+    {localStorage.getItem('usertype') == 0 && <button id="submit-btn" className="btn px-4 btn-primary text-white"onClick={handleUpload} disabled={status !== "stopped"}>Submit Video</button>
+}
     </>
   );
 

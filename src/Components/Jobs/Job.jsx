@@ -23,7 +23,8 @@ const Job = (props) => {
       <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
         <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
           <h2>{props.title}</h2>
-          <strong>{props.region}</strong>
+          <strong>{props.company}</strong>
+          <div>{props.region}</div>
         </div>
         <div className="job-listing-meta">
           <span className={"badge " + typeClass}>{props.type}</span>

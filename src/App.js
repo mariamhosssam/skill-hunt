@@ -26,11 +26,13 @@ import Evaluation from "./Pages/Evaluation";
 import JobSingle from "./Pages/JobSingle";
 import JobApplication from "./Pages/JobApplication";
 import CompanyJobs from "./Pages/CompanyJobs";
+import PracticeSearch from "./Pages/PracticeSearch";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root/>}>
       <Route index element={<Index />}></Route>
+      <Route path="/Practice" element={<PracticeSearch/>}></Route>
 
       <Route path="/About" element={<About />}></Route>
       <Route path="/Login" element={<Login />}></Route>

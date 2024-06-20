@@ -3,16 +3,12 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import JobSearch from "../Components/JobSearch";
 import JobListing from "../Components/Jobs/JobListing";
-import PartnerCompaniesListing from "../Components/PartnerCompaniesListing";
-import SiteStates from "../Components/SiteStates";
 import axios from "axios";
 import { baseUrl } from "../Helpers";
-import jobs from "../Components/Jobs/jobs";
 
-const Index = () => {
+const PracticeSearch = () => {
   const [thejobs, setJob] = useState([])
   const token = localStorage.getItem('token')
-  const [state, setState] = useState({})
 
 
   const receiveJobs = (thejobs) => {
@@ -20,16 +16,10 @@ const Index = () => {
   }
 
   useEffect(() => {
-    axios.get(`${baseUrl}/Job/Site Stats`)
-    .then(response => {
-      setState(response.data);
-    }
-    )
-    .catch(err => console.log(err))
-    
-    axios.get(`${baseUrl}/Job/GetJobs?token=${token}`)
-      .then(response => {
-          setJob(response.data)      }
+    axios.get(`${baseUrl}/Job/GetJobs?token=${token}&isPractice=${true}`)
+      .then(response => (
+          setJob(response.data)
+      )
       )
       .catch(err => console.log(err))
   }, [])
@@ -39,8 +29,7 @@ const Index = () => {
     <div className="site-wrap">
     <Header title="SkillHunt"></Header>
     {/* HOME */}
-    <JobSearch handleJobs={receiveJobs}></JobSearch>
-    <SiteStates state={state}></SiteStates>
+    <JobSearch isPractice={true} handleJobs={receiveJobs}></JobSearch>
 
       <JobListing thejobs={thejobs}></JobListing>
       <section
@@ -53,12 +42,11 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <PartnerCompaniesListing></PartnerCompaniesListing>
-      <section className="bg-light pt-5 testimony-full">
+      {/* <section className="bg-light pt-5 testimony-full">
         <div className="owl-carousel single-carousel">
 
         </div>
-      </section>
+      </section> */}
       <section
         className="pt-5 bg-image overlay-primary fixed overlay"
         style={{ backgroundImage: 'url("images/hero_1.jpg")' }}
@@ -70,4 +58,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default PracticeSearch;

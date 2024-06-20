@@ -16,7 +16,8 @@ const JobSearch = (props) => {
         params: {
           title: title,
           region: region,
-          type: type
+          type: type,
+          isPractice: props.isPractice
         }
       })
       .then((response) => {
@@ -49,13 +50,15 @@ const JobSearch = (props) => {
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
-                <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                {!props.isPractice && (
+                  <>
+                  <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select
                     className=" form-control form-control-lg"
-                    value={region}
                     onChange={(e) => setRegion(e.target.value)}
-                    title="Select Job region"
                   >
+                    <option selected disabled={true}>Select Job region</option>
+                    <option value={''}>Any</option>
                     <option>Cairo</option>
                     <option>Alexandria</option>
                     <option>Giza</option>
@@ -68,15 +71,18 @@ const JobSearch = (props) => {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0 ">
                   <select
                     className=" form-control form-control-lg"
-                    value={type}
                     onChange={(e) => setType(e.target.value)}
-                    title="Select Job Type"
                   >
-                    <option>Part Time</option>
+                    <option selected disabled={true}>Select Job Type</option>
+                    <option value={''}>Any</option>
                     <option>Full Time</option>
+                    <option>Part Time</option>
                     <option>Internship</option>
                   </select>
                 </div>
+                  </>
+                )}
+                
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <button
                     onClick={handleSubmit}
@@ -88,7 +94,7 @@ const JobSearch = (props) => {
                   </button>
                 </div>
               </div>
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-md-12 popular-keywords">
                   <h3>Trending Keywords:</h3>
                   <ul className="keywords list-unstyled m-0 p-0">
@@ -103,7 +109,7 @@ const JobSearch = (props) => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

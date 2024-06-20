@@ -123,11 +123,11 @@ const CompanySignin = () => {
     <label htmlFor="password">Password:</label>
     <input type="password" className="form-control" id="password" placeholder="Enter password" name="password" value={formData.password} onChange={handleChange} />
   </div>
-  <div className="form-check mb-3">
+  {/* <div className="form-check mb-3">
     <label className="form-check-label">
       <input className="form-check-input" type="checkbox" name="remember" /> Remember me
     </label>
-  </div>
+  </div> */}
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
 

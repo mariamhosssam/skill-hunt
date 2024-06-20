@@ -139,7 +139,8 @@ const JobDetails = () => {
                     <div className="row mb-5">
 
                       <div className="col-6">
-                        <a href="#" className="btn btn-block btn-primary btn-md" onClick={handleApplyClick}>Apply Now</a>
+                        {localStorage.getItem('usertype') == 0 && <a href="#" className="btn btn-block btn-primary btn-md" onClick={handleApplyClick}>Apply Now</a>
+                        }
                       </div>
                     </div>
                   </div>
