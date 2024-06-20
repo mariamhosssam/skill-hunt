@@ -14,12 +14,14 @@ const Evaluation = () => {
   const reportId = searchParams.get("id");
   const token = localStorage.getItem('token');
   const [analysis, setAnalysis] = useState(undefined)
+  const [bodyLanguage, setBodyLanguage] = useState(undefined)
   const [result, setResult] = useState(0)
   useEffect(() => {
     axios.get(`${baseUrl}/report/GetReport?token=${token}&reportId=${reportId}`)
       .then(response => {
         console.log(response.data)
         setAnalysis(response.data)
+        setBodyLanguage(response.data.bodyLanguageAnalysisResult)
         setResult(response.data.questions.filter(q => q.isCorrect).length)
       })
   }, [])
@@ -42,11 +44,11 @@ const Evaluation = () => {
                   {/* Shoulders - Arm Rates */}
                   <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Openness Rate :</span>
                   <ProgressBar
-                    completed={((analysis.armPositionAnalysisRate+analysis.shouldersPositionAnalysisRate)/200) * 100}
+                    completed={((bodyLanguage.armPositionAnalysisRate+bodyLanguage.shouldersPositionAnalysisRate)/200) * 100}
                   />
                   <div className="mb-5">
                     <div style={{ width: '100%' }}>
-                    <p>{analysis.armPositionAnalysisFeedback + ', while' + analysis.shouldersPositionAnalysisFeedback}</p>
+                    <p>{bodyLanguage.armPositionAnalysisFeedback + ', while' + bodyLanguage.shouldersPositionAnalysisFeedback}</p>
                     </div>
                   </div>
                 </div>
@@ -55,11 +57,11 @@ const Evaluation = () => {
                     {/* HappyFace - Eyes Rates*/}
                     <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Confidence Rate :</span>
                     <ProgressBar
-                    completed={((analysis.smilingRate+analysis.eyeTrackingRate)/200) * 100}
+                    completed={((bodyLanguage.smilingRate+bodyLanguage.eyeTrackingRate)/200) * 100}
                     />
                     <div className="mb-5">
                       <div style={{ width: '100%' }}>
-                      <p>{analysis.smilingFeedback+ ', while' + analysis.eyeTrackingFeedback}</p>
+                      <p>{bodyLanguage.smilingFeedback+ ', while' + bodyLanguage.eyeTrackingFeedback}</p>
                       </div>
                     </div>
                   </div>
@@ -68,11 +70,11 @@ const Evaluation = () => {
                   {/* Face Rate */}
                   <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Relaxation Rate :</span>
                   <ProgressBar
-                    completed={analysis.faceExpressionsRate}
+                    completed={bodyLanguage.faceExpressionsRate}
                   />
                   <div className="mb-5">
                     <div style={{ width: '100%' }}>
-                      <p>{analysis.faceExpressionFeedback}</p>
+                      <p>{bodyLanguage.faceExpressionFeedback}</p>
                     </div>
                   </div>
                 </div>
@@ -153,11 +155,11 @@ const Evaluation = () => {
                 <div>
                   <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Sentiment Analysis Rate :</span>
                   <ProgressBar
-                    completed={analysis.sentimentPercentage}
+                    completed={bodyLanguage.sentimentPercentage}
                   />
                   <div className="mb-5">
                     <div style={{ width: '100%' }}>
-                      <p>{analysis.sentimentStatus}</p>
+                      <p>{bodyLanguage.sentimentStatus}</p>
                     </div>
                   </div>
                   
@@ -166,11 +168,11 @@ const Evaluation = () => {
                 <div>
                   <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Readability Analysis Rate :</span>
                   <ProgressBar
-                    completed={analysis.readabilityPercentage}
+                    completed={bodyLanguage.readabilityPercentage}
                   />
                   <div className="mb-5">
                     <div style={{ width: '100%' }}>
-                      <p>{analysis.readabilityNote}
+                      <p>{bodyLanguage.readabilityNote}
                       </p>
                     </div>
                   </div>
@@ -179,7 +181,7 @@ const Evaluation = () => {
                 <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>transcribed text:</span>
                 <div className="mb-5">
                     <div style={{ width: '100%' }}>
-                      <p>{analysis.transcribedText}</p>
+                      <p>{bodyLanguage.transcribedText}</p>
                     </div>
                   </div>
                 </div>
@@ -206,7 +208,7 @@ const Evaluation = () => {
                 <div>
                   <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>Suggested Jobs :</span>
                   <div className="mb-3">
-                {analysis.sortedJobs?.map((j, index) => (
+                {bodyLanguage.sortedJobs?.map((j, index) => (
                         <div key={index} style={{ width: '30%', marginBottom: '10px' }}>
                             <span>{j.jobTitle}</span>
                             <ProgressBar completed={j.similarityScore} />
