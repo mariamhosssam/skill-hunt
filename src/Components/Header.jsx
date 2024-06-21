@@ -48,7 +48,7 @@ const Header = (props) => {
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="site-logo col-6">
-              <a href="index.html"> {props.title ? props.title : 'SkillHunt'}</a>
+              <a href="#"> {props.title ? props.title : 'SkillHunt'}</a>
             </div>
 
 

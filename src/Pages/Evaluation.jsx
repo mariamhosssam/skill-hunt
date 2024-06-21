@@ -16,19 +16,25 @@ const Evaluation = () => {
   const [analysis, setAnalysis] = useState(undefined)
   const [bodyLanguage, setBodyLanguage] = useState(undefined)
   const [result, setResult] = useState(0)
+  const[totalBodyLanguageRate, settotalBodyLanguageRate] = useState(83)
+
   useEffect(() => {
     axios.get(`${baseUrl}/report/GetReport?token=${token}&reportId=${reportId}`)
       .then(response => {
         console.log(response.data)
         setAnalysis(response.data)
         setBodyLanguage(response.data.bodyLanguageAnalysisResult)
+        settotalBodyLanguageRate(response.data.totalBodyLanguageRate)
         setResult(response.data.questions.filter(q => q.isCorrect).length)
-      })
+      }).catch((error) => {
+        console.log(error);
+        
+        })
   }, [])
 
   return (
     <div className="site-wrap">
-      <Header pageTitle='Interview evaluation' rate={90}></Header>
+      <Header pageTitle='Interview evaluation' rate={totalBodyLanguageRate}></Header>
       <section className="site-section">
         {analysis && (
           <div className="container">

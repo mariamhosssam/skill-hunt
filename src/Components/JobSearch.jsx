@@ -114,9 +114,9 @@ const JobSearch = (props) => {
           </div>
         </div>
       </div>
-      <a href="#next" className="scroll-button smoothscroll">
+      {/* <a href="#next" className="scroll-button smoothscroll">
         <span className=" icon-keyboard_arrow_down" />
-      </a>
+      </a> */}
     </section>
   );
 };

@@ -1,7 +1,13 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const ApplyForJob = () => {
+  const navigate = useNavigate()
+  const handleSubmit = async () => {
+    window.scrollTo(0, 0);
+    navigate('/', { replace: true });
+  };
     return (
       <div>
         <Header pageTitle='Apply for your Dream job now!'></Header>
@@ -48,9 +54,9 @@ const ApplyForJob = () => {
             <label htmlFor="mobile number">Upload your CV:</label>
             <label htmlFor="file">File</label>
             <input id="file" name="file" type="file" />
-            <button>Upload</button>
+            
           </form>
-          <a href="Explore.html">Submit</a>
+          <button id="submit-btn" className="btn px-4 btn-primary text-white m-3" onClick={handleSubmit} >Submit the Application</button>
         </div>
         {/* <div class="col-lg-6">
       <h2 class="mb-4">Log In To JobBoard</h2>

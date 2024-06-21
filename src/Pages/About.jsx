@@ -1,14 +1,29 @@
+import { useEffect, useState } from "react";
 import Footer from "../Components/Footer"
 import Header from "../Components/Header"
+import axios from "axios";
 import SiteStates from "../Components/SiteStates"
+import { baseUrl } from "../Helpers";
 
 const About = () => {
+
+  const [state, setState] = useState({});
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/Job/Site Stats`)
+    .then(response => {
+      setState(response.data);
+    }
+    )
+    .catch(err => console.log(err))
+
+  }, [])
     return (
   <div className="site-wrap">
     <Header pageTitle='About Us'></Header>
     {/* HOME */}
    
-    <SiteStates></SiteStates>
+    <SiteStates state={state}></SiteStates>
     <section className="site-section pb-0">
       <div className="container">
         <div className="row align-items-center">

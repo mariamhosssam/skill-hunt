@@ -110,7 +110,7 @@ const JobDetails = () => {
                   <div className="col-lg-8 mb-4 mb-lg-0">
                     <div className="d-flex align-items-center">
                       <div className="border p-2 d-inline-block mr-3 rounded">
-                        <img src={jobDetails.img ?? jobDetails.imgPath ?? "images/job_logo_5.jpg"} alt="Image" />
+                      <img src="images/job.png" alt="Image" style={{ width: "80px" }} />
                       </div>
                       <div>
                         <h2>{jobDetails.jobTitle}</h2>
